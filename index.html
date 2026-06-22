@@ -7,99 +7,67 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{
-  background:#000;color:#fff;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-}
+body{background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 button,input{font-family:inherit}
 
-.view{display:none;min-height:100vh}
-.view.active{display:block}
+.view{display:none;min-height:100vh;opacity:0;transition:opacity .8s cubic-bezier(.22,1,.36,1)}
+.view.active{display:block;opacity:1}
 
-.hero{
-  min-height:100vh;display:flex;align-items:center;justify-content:center;
-  text-align:center;padding:40px 20px;
-}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 20px}
 .logo{width:82vw;max-width:1100px;margin:auto}
-.logo svg{width:100%}
-.brand{
-  font-size:clamp(48px,10vw,120px);
-  letter-spacing:.35em;margin-top:42px;margin-left:.35em;font-weight:600;
-}
-.enter{
-  margin-top:48px;background:none;border:none;color:#aaa;
-  letter-spacing:.35em;font-size:13px;cursor:pointer;
-}
+.logo svg{width:100%;overflow:visible}
+
+.logo-part{transition:transform 1.4s cubic-bezier(.16,1,.3,1),opacity .9s ease}
+.logo-start .m{transform:translateX(-90px)}
+.logo-start .i{transform:translateX(0)}
+.logo-start .n{transform:translateX(90px)}
+.logo-ready .m,.logo-ready .i,.logo-ready .n{transform:translateX(0)}
+.logo-exit .m{transform:translateX(-120px);opacity:0}
+.logo-exit .i{transform:translateX(0);opacity:0}
+.logo-exit .n{transform:translateX(120px);opacity:0}
+
+.brand{font-size:clamp(48px,10vw,120px);letter-spacing:.35em;margin-top:42px;margin-left:.35em;font-weight:600;transition:opacity .7s ease,transform .7s ease}
+.hero-exit .brand{opacity:0;transform:translateY(20px)}
+.enter{margin-top:48px;background:none;border:none;color:#aaa;letter-spacing:.35em;font-size:13px;cursor:pointer;transition:opacity .5s ease,color .3s ease}
+.enter:hover{color:#fff}
+.hero-exit .enter{opacity:0}
 
 .app{background:#070707;min-height:100vh}
-.topbar{
-  position:sticky;top:0;z-index:10;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:18px 22px;background:rgba(7,7,7,.82);
-  backdrop-filter:blur(18px);border-bottom:1px solid #1d1d1d;
-}
+.topbar{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:18px 22px;background:rgba(7,7,7,.82);backdrop-filter:blur(18px);border-bottom:1px solid #1d1d1d}
 .top-logo{letter-spacing:.28em;font-weight:700;font-size:14px}
-.top-btn{background:none;border:none;color:#888;font-size:14px}
+.langs{display:flex;gap:8px}
+.lang-btn{border:1px solid #333;background:#111;color:#888;padding:8px 13px;border-radius:999px;font-size:12px;cursor:pointer}
+.lang-btn.active{background:#fff;color:#000;border-color:#fff}
 
+.page{display:none;opacity:0;transform:translateY(18px);transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1)}
+.page.active{display:block;opacity:1;transform:translateY(0)}
 .inner{max-width:1120px;margin:auto;padding:64px 22px}
 h1{font-size:clamp(40px,6vw,74px);margin-bottom:14px}
 .sub{color:#888;font-size:18px;margin-bottom:34px}
-
-.search{
-  width:100%;padding:19px 22px;margin-bottom:36px;
-  border:1px solid #2d2d2d;border-radius:30px;
-  background:linear-gradient(180deg,#171717,#101010);
-  color:white;font-size:17px;outline:none;
-}
+.search{width:100%;padding:19px 22px;margin-bottom:36px;border:1px solid #2d2d2d;border-radius:30px;background:linear-gradient(180deg,#171717,#101010);color:white;font-size:17px;outline:none}
 .search::placeholder{color:#666}
 
-.grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:24px;
-}
-.card{
-  cursor:pointer;background:linear-gradient(180deg,#181818,#101010);
-  border:1px solid #2d2d2d;border-radius:42px;
-  padding:28px;min-height:385px;
-  display:flex;flex-direction:column;justify-content:space-between;
-  transition:.3s cubic-bezier(.22,1,.36,1);
-}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:24px}
+.card{cursor:pointer;background:linear-gradient(180deg,#181818,#101010);border:1px solid #2d2d2d;border-radius:42px;padding:28px;min-height:385px;display:flex;flex-direction:column;justify-content:space-between;transition:.35s cubic-bezier(.22,1,.36,1)}
 .card:hover{transform:translateY(-6px);border-color:#555}
-.cover,.detail-cover{
-  background:radial-gradient(circle at top,#303030,#080808 70%);
-  display:flex;align-items:center;justify-content:center;
-}
+.cover,.detail-cover{background:radial-gradient(circle at top,#303030,#080808 70%);display:flex;align-items:center;justify-content:center}
 .cover{height:185px;border-radius:34px;margin-bottom:26px}
 .cover svg{width:78%}
 .detail-cover{height:300px;border-radius:38px;margin-bottom:34px}
 .detail-cover svg{width:70%;max-width:720px}
-
 .category{color:#777;font-size:13px;letter-spacing:.14em;margin-bottom:10px}
 .title{font-size:26px;margin-bottom:8px}
 .meta{color:#888;font-size:15px;line-height:1.7}
 .bottom{display:flex;justify-content:space-between;align-items:center;margin-top:30px}
 .price{font-size:24px;font-weight:700}
-.small-btn,.primary{
-  background:#fff;color:#000;border:none;font-weight:800;cursor:pointer;
-}
+.small-btn,.primary{background:#fff;color:#000;border:none;font-weight:800;cursor:pointer}
 .small-btn{padding:13px 20px;border-radius:999px;font-size:14px}
-.primary{
-  width:100%;padding:18px;border-radius:999px;font-size:17px;margin-top:30px;
-}
+.primary{width:100%;padding:18px;border-radius:999px;font-size:17px;margin-top:30px}
 
-.panel{
-  background:linear-gradient(180deg,#181818,#101010);
-  border:1px solid #2d2d2d;border-radius:46px;
-  padding:32px;
-}
-.back{
-  color:#888;background:none;border:none;font-size:15px;margin-bottom:34px;cursor:pointer;
-}
+.panel{background:linear-gradient(180deg,#181818,#101010);border:1px solid #2d2d2d;border-radius:46px;padding:32px}
+.back{color:#888;background:none;border:none;font-size:15px;margin-bottom:34px;cursor:pointer}
 .specs{color:#888;line-height:1.9;margin-top:16px}
-.input{
-  width:100%;padding:18px 20px;border-radius:24px;
-  border:1px solid #333;background:#0b0b0b;color:white;
-  font-size:16px;margin-top:10px;outline:none;
-}
+.input{width:100%;padding:18px 20px;border-radius:24px;border:1px solid #333;background:#0b0b0b;color:white;font-size:16px;margin-top:10px;outline:none}
 .notice{color:#777;font-size:14px;line-height:1.7;margin-top:20px}
 .no-result{display:none;color:#777;text-align:center;margin-top:50px}
 .footer{padding:40px 20px;text-align:center;color:#555;font-size:13px}
@@ -116,9 +84,9 @@ h1{font-size:clamp(40px,6vw,74px);margin-bottom:14px}
 <body>
 
 <section id="home" class="view active">
-  <div class="hero">
+  <div class="hero" id="heroBox">
     <div>
-      <div class="logo" id="mainLogo"></div>
+      <div class="logo logo-start" id="mainLogo"></div>
       <div class="brand">ZEVMIN</div>
       <button class="enter" onclick="enterSite()">ENTER</button>
     </div>
@@ -128,54 +96,50 @@ h1{font-size:clamp(40px,6vw,74px);margin-bottom:14px}
 <section id="app" class="view app">
   <div class="topbar">
     <div class="top-logo">ZEVMIN</div>
-    <button class="top-btn" onclick="showPage('scores')">Scores</button>
+    <div class="langs">
+      <button id="koBtn" class="lang-btn active" onclick="setLang('ko')">KOR</button>
+      <button id="enBtn" class="lang-btn" onclick="setLang('en')">ENG</button>
+    </div>
   </div>
 
-  <div id="scoresPage" class="inner">
-    <h1>Scores</h1>
-    <p class="sub">Search ZEVMIN guitar scores.</p>
-    <input class="search" id="searchInput" placeholder="Search scores">
+  <div id="scoresPage" class="page inner">
+    <h1 id="scoresTitle">악보</h1>
+    <p class="sub" id="scoresSub">ZEVMIN 기타 악보를 검색하세요.</p>
+    <input class="search" id="searchInput" placeholder="악보 검색">
     <div class="grid" id="scoreGrid"></div>
-    <div class="no-result" id="noResult">No scores found.</div>
+    <div class="no-result" id="noResult">검색 결과가 없습니다.</div>
   </div>
 
-  <div id="detailPage" class="inner" style="display:none">
-    <button class="back" onclick="showPage('scores')">← Scores</button>
+  <div id="detailPage" class="page inner">
+    <button class="back" id="backScores" onclick="showPage('scores')">← 악보 목록</button>
     <div class="panel">
       <div class="detail-cover" id="detailCover"></div>
       <div class="category">PDF SCORE</div>
       <h1 id="detailTitle"></h1>
       <p class="sub" id="detailDesc"></p>
       <div class="price" id="detailPrice"></div>
-      <div class="specs">
-        Format: PDF<br>
-        Delivery: Email + Download Link<br>
-        Payment: Card payment preparation
-      </div>
-      <button class="primary" onclick="showCheckout()">Purchase</button>
+      <div class="specs" id="detailSpecs"></div>
+      <button class="primary" id="purchaseBtn" onclick="showCheckout()">구매하기</button>
     </div>
   </div>
 
-  <div id="checkoutPage" class="inner" style="display:none">
-    <button class="back" onclick="showPage('detail')">← Detail</button>
+  <div id="checkoutPage" class="page inner">
+    <button class="back" id="backDetail" onclick="showPage('detail')">← 상세 페이지</button>
     <div class="panel">
-      <h1>Checkout</h1>
+      <h1 id="checkoutTitle">결제</h1>
       <p class="sub" id="checkoutItem"></p>
-      <label>Email</label>
+      <label id="emailLabel">이메일</label>
       <input class="input" id="emailInput" type="email" placeholder="your@email.com">
-      <button class="primary" onclick="completePayment()">Pay</button>
-      <p class="notice">
-        현재는 실제 결제 연결 전 테스트 페이지입니다.<br>
-        다음 단계에서 토스페이먼츠를 연결하면 결제 후 PDF가 자동 발송됩니다.
-      </p>
+      <button class="primary" id="payBtn" onclick="completePayment()">결제하기</button>
+      <p class="notice" id="paymentNotice"></p>
     </div>
   </div>
 
-  <div id="successPage" class="inner" style="display:none">
+  <div id="successPage" class="page inner">
     <div class="panel">
-      <h1>Order Complete</h1>
+      <h1 id="successTitle">주문 완료</h1>
       <p class="sub" id="successText"></p>
-      <button class="primary" onclick="showPage('scores')">Back to Scores</button>
+      <button class="primary" id="backToScores" onclick="showPage('scores')">악보 목록으로</button>
     </div>
   </div>
 
@@ -185,39 +149,110 @@ h1{font-size:clamp(40px,6vw,74px);margin-bottom:14px}
 <script>
 const logo = `
 <svg viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg">
-<path d="M50 250 L170 40 L290 250 L410 40 L530 250 L650 40 L770 250 L890 40 L1010 250 L1130 40"
-stroke="white" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="logo-part m" d="M50 250 L170 40 L290 250 L410 40" stroke="white" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="logo-part i" d="M410 40 L530 250 L650 40" stroke="white" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="logo-part n" d="M650 40 L770 250 L890 40 L1010 250 L1130 40" stroke="white" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`;
 
 document.getElementById("mainLogo").innerHTML = logo;
 
+setTimeout(()=>{
+  document.getElementById("mainLogo").classList.remove("logo-start");
+  document.getElementById("mainLogo").classList.add("logo-ready");
+},300);
+
+let lang = "ko";
+
+const text = {
+  ko:{
+    scores:"악보", sub:"ZEVMIN 기타 악보를 검색하세요.", search:"악보 검색", noResult:"검색 결과가 없습니다.",
+    backScores:"← 악보 목록", backDetail:"← 상세 페이지", purchase:"구매하기",
+    checkout:"결제", email:"이메일", pay:"결제하기",
+    notice:"현재는 실제 결제 연결 전 테스트 페이지입니다.<br>다음 단계에서 토스페이먼츠를 연결하면 결제 후 PDF가 자동 발송됩니다.",
+    success:"주문 완료", backToScores:"악보 목록으로",
+    format:"파일 형식: PDF<br>전달 방식: 이메일 + 다운로드 링크<br>결제 방식: 카드결제 준비 중",
+    complete:"주문 테스트가 완료되었습니다.<br>이 주소로 PDF가 발송되는 구조로 연결될 예정입니다.",
+    emailAlert:"이메일을 입력해주세요.", view:"보기"
+  },
+  en:{
+    scores:"Scores", sub:"Search ZEVMIN guitar scores.", search:"Search scores", noResult:"No scores found.",
+    backScores:"← Scores", backDetail:"← Detail", purchase:"Purchase",
+    checkout:"Checkout", email:"Email", pay:"Pay",
+    notice:"This is a test checkout page before payment integration.<br>In the next version, card payment and automatic PDF email delivery will be connected.",
+    success:"Order Complete", backToScores:"Back to Scores",
+    format:"Format: PDF<br>Delivery: Email + Download Link<br>Payment: Card payment preparation",
+    complete:"Your test order has been completed.<br>The PDF delivery system will be connected to this email address.",
+    emailAlert:"Please enter your email.", view:"View"
+  }
+};
+
 const scores = [
-  {title:"Unravel", price:"₩5,000", desc:"Guitar arrangement · PDF download", keywords:"unravel tokyo ghoul guitar score"},
-  {title:"Canon Rock", price:"₩7,000", desc:"Guitar arrangement · PDF download", keywords:"canon rock guitar score"},
-  {title:"Sparkle", price:"₩6,000", desc:"Guitar arrangement · PDF download", keywords:"sparkle your name ost guitar score"}
+  {title:"Unravel", price:"₩5,000", descKo:"기타 편곡 · PDF 다운로드", descEn:"Guitar arrangement · PDF download", keywords:"unravel tokyo ghoul guitar score"},
+  {title:"Canon Rock", price:"₩7,000", descKo:"기타 편곡 · PDF 다운로드", descEn:"Guitar arrangement · PDF download", keywords:"canon rock guitar score"},
+  {title:"Sparkle", price:"₩6,000", descKo:"기타 편곡 · PDF 다운로드", descEn:"Guitar arrangement · PDF download", keywords:"sparkle your name ost guitar score"}
 ];
 
 let selectedScore = scores[0];
 
 function enterSite(){
-  document.getElementById("home").classList.remove("active");
-  document.getElementById("app").classList.add("active");
-  showPage("scores");
+  document.getElementById("heroBox").classList.add("hero-exit");
+  document.getElementById("mainLogo").classList.remove("logo-ready");
+  document.getElementById("mainLogo").classList.add("logo-exit");
+
+  setTimeout(()=>{
+    document.getElementById("home").classList.remove("active");
+    document.getElementById("app").classList.add("active");
+    showPage("scores");
+  },950);
+}
+
+function setLang(next){
+  lang = next;
+  document.getElementById("koBtn").classList.toggle("active", lang==="ko");
+  document.getElementById("enBtn").classList.toggle("active", lang==="en");
+  document.getElementById("scoresTitle").textContent = text[lang].scores;
+  document.getElementById("scoresSub").textContent = text[lang].sub;
+  document.getElementById("searchInput").placeholder = text[lang].search;
+  document.getElementById("noResult").textContent = text[lang].noResult;
+  document.getElementById("backScores").textContent = text[lang].backScores;
+  document.getElementById("backDetail").textContent = text[lang].backDetail;
+  document.getElementById("purchaseBtn").textContent = text[lang].purchase;
+  document.getElementById("checkoutTitle").textContent = text[lang].checkout;
+  document.getElementById("emailLabel").textContent = text[lang].email;
+  document.getElementById("payBtn").textContent = text[lang].pay;
+  document.getElementById("paymentNotice").innerHTML = text[lang].notice;
+  document.getElementById("successTitle").textContent = text[lang].success;
+  document.getElementById("backToScores").textContent = text[lang].backToScores;
+  document.getElementById("detailSpecs").innerHTML = text[lang].format;
+  if(selectedScore) updateDetailTexts();
+  renderScores(filterScores());
 }
 
 function showPage(page){
   ["scoresPage","detailPage","checkoutPage","successPage"].forEach(id=>{
-    document.getElementById(id).style.display="none";
+    document.getElementById(id).classList.remove("active");
   });
-  document.getElementById(page+"Page").style.display="block";
-  window.scrollTo({top:0,behavior:"smooth"});
+  setTimeout(()=>{
+    ["scoresPage","detailPage","checkoutPage","successPage"].forEach(id=>{
+      document.getElementById(id).style.display="none";
+    });
+    const target = document.getElementById(page+"Page");
+    target.style.display="block";
+    setTimeout(()=>target.classList.add("active"),30);
+    window.scrollTo({top:0,behavior:"smooth"});
+  },160);
+}
+
+function filterScores(){
+  const keyword = document.getElementById("searchInput").value.toLowerCase().trim();
+  return scores.filter(score => score.title.toLowerCase().includes(keyword) || score.keywords.toLowerCase().includes(keyword));
 }
 
 function renderScores(list){
   const grid = document.getElementById("scoreGrid");
   grid.innerHTML = "";
-
   list.forEach(score=>{
+    const desc = lang==="ko" ? score.descKo : score.descEn;
     const card = document.createElement("div");
     card.className = "card";
     card.onclick = () => openDetail(score);
@@ -226,55 +261,48 @@ function renderScores(list){
         <div class="cover">${logo}</div>
         <div class="category">PDF SCORE</div>
         <div class="title">${score.title}</div>
-        <div class="meta">${score.desc.replace(" · ","<br>")}</div>
+        <div class="meta">${desc.replace(" · ","<br>")}</div>
       </div>
       <div class="bottom">
         <div class="price">${score.price}</div>
-        <div class="small-btn">View</div>
+        <div class="small-btn">${text[lang].view}</div>
       </div>`;
     grid.appendChild(card);
   });
-
   document.getElementById("noResult").style.display = list.length ? "none" : "block";
 }
 
 function openDetail(score){
   selectedScore = score;
   document.getElementById("detailCover").innerHTML = logo;
-  document.getElementById("detailTitle").textContent = score.title;
-  document.getElementById("detailDesc").textContent = score.desc;
-  document.getElementById("detailPrice").textContent = score.price;
+  updateDetailTexts();
   showPage("detail");
 }
 
-function showCheckout(){
+function updateDetailTexts(){
+  const desc = lang==="ko" ? selectedScore.descKo : selectedScore.descEn;
+  document.getElementById("detailTitle").textContent = selectedScore.title;
+  document.getElementById("detailDesc").textContent = desc;
+  document.getElementById("detailPrice").textContent = selectedScore.price;
+  document.getElementById("detailSpecs").innerHTML = text[lang].format;
   document.getElementById("checkoutItem").textContent = `${selectedScore.title} · ${selectedScore.price}`;
+}
+
+function showCheckout(){
+  updateDetailTexts();
   showPage("checkout");
 }
 
 function completePayment(){
   const email = document.getElementById("emailInput").value.trim();
-  if(!email){
-    alert("이메일을 입력해주세요.");
-    return;
-  }
-
-  document.getElementById("successText").innerHTML =
-    `${selectedScore.title} 주문 테스트가 완료되었습니다.<br>${email} 주소로 PDF가 발송되는 구조로 연결될 예정입니다.`;
-
+  if(!email){alert(text[lang].emailAlert);return;}
+  document.getElementById("successText").innerHTML = `${selectedScore.title} ${text[lang].complete}<br><br>${email}`;
   showPage("success");
 }
 
-document.getElementById("searchInput").addEventListener("input", function(){
-  const keyword = this.value.toLowerCase().trim();
-  const filtered = scores.filter(score =>
-    score.title.toLowerCase().includes(keyword) ||
-    score.keywords.toLowerCase().includes(keyword)
-  );
-  renderScores(filtered);
-});
+document.getElementById("searchInput").addEventListener("input",()=>renderScores(filterScores()));
 
-renderScores(scores);
+setLang("ko");
 </script>
 
 </body>
