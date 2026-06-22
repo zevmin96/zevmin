@@ -14,18 +14,19 @@ body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
+section{display:none}
+section.active{display:block}
+
 .hero{
   min-height:100vh;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   text-align:center;
   padding:40px 20px;
 }
-
-.logo{width:80vw;max-width:1150px;margin:auto}
+.logo{width:82vw;max-width:1100px;margin:auto}
 .logo svg{width:100%;height:auto}
-
 .name{
   font-size:clamp(48px,10vw,120px);
   letter-spacing:.35em;
@@ -33,139 +34,169 @@ body{
   margin-left:.35em;
   font-weight:600;
 }
-
 .enter{
   display:inline-block;
-  margin-top:46px;
+  margin-top:48px;
   color:#aaa;
   text-decoration:none;
   font-size:13px;
   letter-spacing:.35em;
 }
 
-.section{
+.page{
   min-height:100vh;
-  padding:100px 22px;
-  background:#080808;
+  padding:80px 22px;
+  background:#060606;
 }
-
-.section-inner{max-width:1180px;margin:auto}
-.section-title{font-size:clamp(32px,5vw,64px);margin-bottom:14px}
-.section-subtitle{color:#888;font-size:18px;margin-bottom:28px}
-
-.continuous{
-  position:relative;
-  isolation:isolate;
+.inner{max-width:1120px;margin:auto}
+.back{
+  color:#888;
+  text-decoration:none;
+  font-size:15px;
+  display:inline-block;
+  margin-bottom:34px;
 }
+h1{font-size:clamp(38px,6vw,72px);margin-bottom:14px}
+.subtitle{color:#888;font-size:18px;margin-bottom:34px}
 
-.continuous-bg{
-  position:absolute;
-  inset:0;
+.search{
   width:100%;
-  height:100%;
-  z-index:-1;
-  pointer-events:none;
-}
-
-.search-box{
-  height:72px;
-  margin-bottom:42px;
-}
-
-.search-box input{
-  width:100%;
-  height:100%;
-  border:none;
-  outline:none;
-  background:transparent;
+  padding:19px 22px;
+  margin-bottom:36px;
+  border-radius:30px;
+  border:1px solid #2d2d2d;
+  background:linear-gradient(180deg,#171717,#101010);
   color:white;
   font-size:17px;
-  padding:0 28px;
+  outline:none;
 }
-
-.search-box input::placeholder{color:#666}
+.search::placeholder{color:#666}
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:26px;
+  grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+  gap:24px;
 }
-
 .card{
-  min-height:380px;
+  cursor:pointer;
+  background:linear-gradient(180deg,#181818,#101010);
+  border:1px solid #2d2d2d;
+  border-radius:42px;
   padding:28px;
+  min-height:385px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
-  transition:.35s cubic-bezier(.22,1,.36,1);
+  transition:.3s cubic-bezier(.22,1,.36,1);
 }
-
 .card:hover{
   transform:translateY(-6px);
+  border-color:#555;
 }
-
 .cover{
   height:185px;
-  margin-bottom:26px;
+  border-radius:34px;
+  background:radial-gradient(circle at top,#2f2f2f,#080808 70%);
   display:flex;
-  justify-content:center;
   align-items:center;
-  overflow:hidden;
+  justify-content:center;
+  margin-bottom:26px;
 }
-
-.cover svg.logo-small{
-  width:78%;
-  height:auto;
-  opacity:.92;
-}
-
+.cover svg{width:78%}
 .category{
   color:#777;
   font-size:13px;
-  letter-spacing:.12em;
+  letter-spacing:.14em;
   margin-bottom:10px;
 }
-
-.title{
-  font-size:25px;
-  margin-bottom:8px;
-}
-
-.meta{
-  color:#888;
-  font-size:15px;
-  line-height:1.6;
-}
-
+.title{font-size:26px;margin-bottom:8px}
+.meta{color:#888;font-size:15px;line-height:1.7}
 .bottom{
-  margin-top:30px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:14px;
+  margin-top:30px;
 }
-
-.price{
-  font-size:23px;
-  font-weight:700;
-}
-
-.button{
-  position:relative;
+.price{font-size:24px;font-weight:700}
+.small-btn{
+  background:#fff;
   color:#000;
-  text-decoration:none;
-  padding:13px 21px;
+  padding:13px 20px;
+  border-radius:999px;
   font-size:14px;
   font-weight:700;
-  z-index:1;
 }
 
+.detail-card{
+  background:linear-gradient(180deg,#181818,#101010);
+  border:1px solid #2d2d2d;
+  border-radius:46px;
+  padding:32px;
+}
+.detail-cover{
+  height:300px;
+  border-radius:36px;
+  background:radial-gradient(circle at top,#303030,#080808 70%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:34px;
+}
+.detail-cover svg{width:70%;max-width:720px}
+.detail-info{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:18px;
+}
+.specs{
+  color:#888;
+  line-height:1.9;
+  margin-top:16px;
+}
+.primary{
+  width:100%;
+  margin-top:30px;
+  border:none;
+  background:white;
+  color:black;
+  padding:18px;
+  border-radius:999px;
+  font-size:17px;
+  font-weight:800;
+}
+
+.pay-box{
+  max-width:620px;
+  margin:auto;
+  background:linear-gradient(180deg,#181818,#101010);
+  border:1px solid #2d2d2d;
+  border-radius:44px;
+  padding:32px;
+}
+.pay-title{font-size:34px;margin-bottom:10px}
+.pay-item{color:#aaa;margin-bottom:28px}
+.input{
+  width:100%;
+  padding:18px 20px;
+  border-radius:24px;
+  border:1px solid #333;
+  background:#0b0b0b;
+  color:white;
+  font-size:16px;
+  margin-top:10px;
+  outline:none;
+}
+.notice{
+  color:#777;
+  font-size:14px;
+  line-height:1.7;
+  margin-top:20px;
+}
 .no-result{
   display:none;
   color:#777;
   text-align:center;
   margin-top:50px;
-  font-size:18px;
 }
 
 .footer{
@@ -178,94 +209,86 @@ body{
 @media(max-width:600px){
   .name{font-size:48px;letter-spacing:.28em;margin-left:.28em}
   .logo{width:88vw}
-  .section{padding-top:70px}
+  .page{padding:60px 20px}
+  .card{border-radius:38px}
+  .detail-card,.pay-box{border-radius:38px}
 }
 </style>
 </head>
 
 <body>
 
-<section class="hero">
+<section id="home" class="hero active">
   <div>
     <div class="logo">
-      <svg viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 1200 300">
         <path d="M50 250 L170 40 L290 250 L410 40 L530 250 L650 40 L770 250 L890 40 L1010 250 L1130 40"
         stroke="white" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
     <div class="name">ZEVMIN</div>
-    <a class="enter" href="#scores">ENTER</a>
+    <a class="enter" href="#" onclick="showPage('scores')">ENTER</a>
   </div>
 </section>
 
-<section class="section" id="scores">
-  <div class="section-inner">
-    <h1 class="section-title">Scores</h1>
-    <p class="section-subtitle">Search ZEVMIN guitar scores.</p>
+<section id="scores" class="page">
+  <div class="inner">
+    <a class="back" href="#" onclick="showPage('home')">← Home</a>
+    <h1>Scores</h1>
+    <p class="subtitle">Search ZEVMIN guitar scores.</p>
 
-    <div class="search-box continuous" data-fill1="#171717" data-fill2="#101010" data-stroke="#343434">
-      <input id="searchInput" type="text" placeholder="Search scores">
-    </div>
+    <input class="search" id="searchInput" type="text" placeholder="Search scores">
 
-    <div class="grid">
-
-      <div class="card continuous" data-title="unravel" data-fill1="#191919" data-fill2="#101010" data-stroke="#333333">
-        <div>
-          <div class="cover continuous" data-fill1="#242424" data-fill2="#070707" data-stroke="#1e1e1e">
-            <svg class="logo-small" viewBox="0 0 1200 300">
-              <path d="M50 250 L170 40 L290 250 L410 40 L530 250 L650 40 L770 250 L890 40 L1010 250 L1130 40"
-              stroke="white" stroke-width="26" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="category">PDF SCORE</div>
-          <div class="title">Unravel</div>
-          <div class="meta">Guitar arrangement<br>PDF download</div>
-        </div>
-        <div class="bottom">
-          <div class="price">₩5,000</div>
-          <a class="button continuous" href="#" data-fill1="#ffffff" data-fill2="#e8e8e8" data-stroke="#ffffff">Coming Soon</a>
-        </div>
-      </div>
-
-      <div class="card continuous" data-title="canon rock" data-fill1="#191919" data-fill2="#101010" data-stroke="#333333">
-        <div>
-          <div class="cover continuous" data-fill1="#242424" data-fill2="#070707" data-stroke="#1e1e1e">
-            <svg class="logo-small" viewBox="0 0 1200 300">
-              <path d="M50 250 L170 40 L290 250 L410 40 L530 250 L650 40 L770 250 L890 40 L1010 250 L1130 40"
-              stroke="white" stroke-width="26" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="category">PDF SCORE</div>
-          <div class="title">Canon Rock</div>
-          <div class="meta">Guitar arrangement<br>PDF download</div>
-        </div>
-        <div class="bottom">
-          <div class="price">₩7,000</div>
-          <a class="button continuous" href="#" data-fill1="#ffffff" data-fill2="#e8e8e8" data-stroke="#ffffff">Coming Soon</a>
-        </div>
-      </div>
-
-      <div class="card continuous" data-title="sparkle your name ost" data-fill1="#191919" data-fill2="#101010" data-stroke="#333333">
-        <div>
-          <div class="cover continuous" data-fill1="#242424" data-fill2="#070707" data-stroke="#1e1e1e">
-            <svg class="logo-small" viewBox="0 0 1200 300">
-              <path d="M50 250 L170 40 L290 250 L410 40 L530 250 L650 40 L770 250 L890 40 L1010 250 L1130 40"
-              stroke="white" stroke-width="26" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="category">PDF SCORE</div>
-          <div class="title">Sparkle</div>
-          <div class="meta">Guitar arrangement<br>PDF download</div>
-        </div>
-        <div class="bottom">
-          <div class="price">₩6,000</div>
-          <a class="button continuous" href="#" data-fill1="#ffffff" data-fill2="#e8e8e8" data-stroke="#ffffff">Coming Soon</a>
-        </div>
-      </div>
-
-    </div>
-
+    <div class="grid" id="scoreGrid"></div>
     <div class="no-result" id="noResult">No scores found.</div>
+  </div>
+</section>
+
+<section id="detail" class="page">
+  <div class="inner">
+    <a class="back" href="#" onclick="showPage('scores')">← Scores</a>
+    <div class="detail-card">
+      <div class="detail-cover">
+        <svg viewBox="0 0 1200 300">
+          <path d="M50 250 L170 40 L290 250 L410 40 L530 250 L650 40 L770 250 L890 40 L1010 250 L1130 40"
+          stroke="white" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <div class="category">PDF SCORE</div>
+      <h1 id="detailTitle">Score Title</h1>
+      <p class="subtitle" id="detailDesc">Guitar arrangement</p>
+      <div class="price" id="detailPrice">₩5,000</div>
+
+      <div class="specs">
+        Format: PDF<br>
+        Delivery: Email + Download Link<br>
+        Payment: Card payment preparation
+      </div>
+
+      <button class="primary" onclick="goPayment()">Purchase</button>
+    </div>
+  </div>
+</section>
+
+<section id="payment" class="page">
+  <div class="inner">
+    <a class="back" href="#" onclick="showPage('detail')">← Detail</a>
+
+    <div class="pay-box">
+      <div class="pay-title">Checkout</div>
+      <div class="pay-item" id="payItem">Score Title · ₩5,000</div>
+
+      <label>Email</label>
+      <input class="input" id="emailInput" type="email" placeholder="your@email.com">
+
+      <button class="primary" onclick="fakePay()">Pay</button>
+
+      <p class="notice">
+        현재는 실제 결제 연결 전 테스트 페이지입니다.<br>
+        다음 단계에서 토스페이먼츠를 연결하면 카드결제 후 PDF가 자동 발송됩니다.
+      </p>
+    </div>
   </div>
 </section>
 
@@ -274,68 +297,105 @@ body{
 </footer>
 
 <script>
-function addContinuousCorners(){
-  document.querySelectorAll(".continuous").forEach((el, index)=>{
-    if(el.querySelector(":scope > .continuous-bg")) return;
+const scores = [
+  {
+    title:"Unravel",
+    price:"₩5,000",
+    desc:"Guitar arrangement · PDF download",
+    keywords:"unravel tokyo ghoul guitar score"
+  },
+  {
+    title:"Canon Rock",
+    price:"₩7,000",
+    desc:"Guitar arrangement · PDF download",
+    keywords:"canon rock guitar score"
+  },
+  {
+    title:"Sparkle",
+    price:"₩6,000",
+    desc:"Guitar arrangement · PDF download",
+    keywords:"sparkle your name ost guitar score"
+  }
+];
 
-    const fill1 = el.dataset.fill1 || "#171717";
-    const fill2 = el.dataset.fill2 || "#101010";
-    const stroke = el.dataset.stroke || "#333333";
-    const id = "grad-" + index;
+let selectedScore = scores[0];
 
-    const svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
-    svg.setAttribute("class","continuous-bg");
-    svg.setAttribute("viewBox","0 0 100 100");
-    svg.setAttribute("preserveAspectRatio","none");
-
-    svg.innerHTML = `
-      <defs>
-        <linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="${fill1}"/>
-          <stop offset="100%" stop-color="${fill2}"/>
-        </linearGradient>
-      </defs>
-      <path
-        d="
-        M 50 0
-        C 78 0 100 22 100 50
-        C 100 78 78 100 50 100
-        C 22 100 0 78 0 50
-        C 0 22 22 0 50 0
-        Z"
-        fill="url(#${id})"
-        stroke="${stroke}"
-        stroke-width="1.2"
-        vector-effect="non-scaling-stroke"
-      />
-    `;
-
-    el.prepend(svg);
-  });
+function logoSvg(){
+  return `
+  <svg viewBox="0 0 1200 300">
+    <path d="M50 250 L170 40 L290 250 L410 40 L530 250 L650 40 L770 250 L890 40 L1010 250 L1130 40"
+    stroke="white" stroke-width="26" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>`;
 }
 
-addContinuousCorners();
+function renderScores(list){
+  const grid = document.getElementById("scoreGrid");
+  grid.innerHTML = "";
 
-const searchInput = document.getElementById("searchInput");
-const cards = document.querySelectorAll(".card");
-const noResult = document.getElementById("noResult");
-
-searchInput.addEventListener("input", function(){
-  const keyword = this.value.toLowerCase().trim();
-  let visibleCount = 0;
-
-  cards.forEach(card=>{
-    const title = card.dataset.title.toLowerCase();
-    if(title.includes(keyword)){
-      card.style.display = "flex";
-      visibleCount++;
-    }else{
-      card.style.display = "none";
-    }
+  list.forEach((score, index)=>{
+    const card = document.createElement("div");
+    card.className = "card";
+    card.onclick = () => openDetail(score);
+    card.innerHTML = `
+      <div>
+        <div class="cover">${logoSvg()}</div>
+        <div class="category">PDF SCORE</div>
+        <div class="title">${score.title}</div>
+        <div class="meta">${score.desc.replace(" · ","<br>")}</div>
+      </div>
+      <div class="bottom">
+        <div class="price">${score.price}</div>
+        <div class="small-btn">View</div>
+      </div>
+    `;
+    grid.appendChild(card);
   });
 
-  noResult.style.display = visibleCount === 0 ? "block" : "none";
+  document.getElementById("noResult").style.display = list.length ? "none" : "block";
+}
+
+function showPage(id){
+  document.querySelectorAll("section").forEach(sec=>sec.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  window.scrollTo(0,0);
+}
+
+function openDetail(score){
+  selectedScore = score;
+  document.getElementById("detailTitle").textContent = score.title;
+  document.getElementById("detailDesc").textContent = score.desc;
+  document.getElementById("detailPrice").textContent = score.price;
+  showPage("detail");
+}
+
+function goPayment(){
+  document.getElementById("payItem").textContent = `${selectedScore.title} · ${selectedScore.price}`;
+  showPage("payment");
+}
+
+function fakePay(){
+  const email = document.getElementById("emailInput").value.trim();
+
+  if(!email){
+    alert("이메일을 입력해주세요.");
+    return;
+  }
+
+  alert("현재는 테스트 결제 페이지입니다. 다음 단계에서 실제 카드결제를 연결합니다.");
+}
+
+document.getElementById("searchInput").addEventListener("input", function(){
+  const keyword = this.value.toLowerCase().trim();
+
+  const filtered = scores.filter(score =>
+    score.title.toLowerCase().includes(keyword) ||
+    score.keywords.toLowerCase().includes(keyword)
+  );
+
+  renderScores(filtered);
 });
+
+renderScores(scores);
 </script>
 
 </body>
