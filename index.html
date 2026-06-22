@@ -7,79 +7,317 @@
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
-    background:#000;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    overflow:hidden;
+  background:#000;
+  color:#fff;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
-.container{
-    text-align:center;
+.hero{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:40px 20px;
 }
 
 .logo{
-    width:80vw;
-    max-width:1200px;
+  width:80vw;
+  max-width:1150px;
+  margin:auto;
 }
 
 .logo svg{
-    width:100%;
-    height:auto;
+  width:100%;
+  height:auto;
 }
 
 .name{
-    color:white;
-    font-family:-apple-system,BlinkMacSystemFont,sans-serif;
-    font-size:4rem;
-    letter-spacing:0.35em;
-    margin-top:40px;
-    margin-left:0.35em;
+  font-size:clamp(48px,10vw,120px);
+  letter-spacing:0.35em;
+  margin-top:42px;
+  margin-left:0.35em;
+  font-weight:600;
 }
 
-@media(max-width:768px){
-    .name{
-        font-size:2.5rem;
-    }
+.enter{
+  display:inline-block;
+  margin-top:46px;
+  color:#aaa;
+  text-decoration:none;
+  font-size:13px;
+  letter-spacing:0.35em;
+  transition:.25s;
+}
+
+.enter:hover{
+  color:#fff;
+}
+
+.section{
+  min-height:100vh;
+  padding:100px 22px;
+  background:#080808;
+}
+
+.section-inner{
+  max-width:1180px;
+  margin:auto;
+}
+
+.section-title{
+  font-size:clamp(32px,5vw,64px);
+  margin-bottom:14px;
+}
+
+.section-subtitle{
+  color:#888;
+  font-size:18px;
+  margin-bottom:46px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:22px;
+}
+
+.card{
+  background:#141414;
+  border:1px solid #272727;
+  border-radius:28px;
+  padding:24px;
+  min-height:360px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  transition:.25s;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  border-color:#555;
+}
+
+.cover{
+  height:180px;
+  border-radius:22px;
+  background:
+    linear-gradient(135deg,#262626,#0b0b0b);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-bottom:24px;
+}
+
+.cover svg{
+  width:78%;
+  opacity:.9;
+}
+
+.category{
+  color:#777;
+  font-size:13px;
+  letter-spacing:.12em;
+  margin-bottom:8px;
+  text-transform:uppercase;
+}
+
+.title{
+  font-size:24px;
+  margin-bottom:8px;
+}
+
+.meta{
+  color:#888;
+  font-size:15px;
+  line-height:1.6;
+}
+
+.bottom{
+  margin-top:28px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:14px;
+}
+
+.price{
+  font-size:22px;
+  font-weight:700;
+}
+
+.button{
+  color:#000;
+  background:#fff;
+  text-decoration:none;
+  padding:12px 18px;
+  border-radius:999px;
+  font-size:14px;
+  font-weight:600;
+}
+
+.info{
+  padding:90px 22px;
+  background:#000;
+  text-align:center;
+}
+
+.info h2{
+  font-size:clamp(28px,4vw,54px);
+  margin-bottom:20px;
+}
+
+.info p{
+  color:#888;
+  max-width:680px;
+  margin:0 auto;
+  line-height:1.8;
+  font-size:17px;
+}
+
+.footer{
+  padding:40px 20px;
+  text-align:center;
+  color:#555;
+  font-size:13px;
+}
+
+@media(max-width:600px){
+  .name{
+    font-size:48px;
+    letter-spacing:.28em;
+    margin-left:.28em;
+  }
+
+  .logo{
+    width:88vw;
+  }
+
+  .section{
+    padding-top:70px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<section class="hero">
+  <div>
+    <div class="logo">
+      <svg viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M50 250
+          L170 40
+          L290 250
+          L410 40
+          L530 250
+          L650 40
+          L770 250
+          L890 40
+          L1010 250
+          L1130 40"
+          stroke="white"
+          stroke-width="28"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+      </svg>
+    </div>
 
-<div class="logo">
-<svg viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg">
-<path
-d="M50 250
-L170 40
-L290 250
-L410 40
-L530 250
-L650 40
-L770 250
-L890 40
-L1010 250
-L1130 40"
-stroke="white"
-stroke-width="28"
-fill="none"
-stroke-linecap="round"
-stroke-linejoin="round"/>
-</svg>
-</div>
+    <div class="name">ZEVMIN</div>
 
-<div class="name">ZEVMIN</div>
+    <a class="enter" href="#scores">ENTER</a>
+  </div>
+</section>
 
-</div>
+<section class="section" id="scores">
+  <div class="section-inner">
+    <h1 class="section-title">Scores</h1>
+    <p class="section-subtitle">Premium PDF guitar scores by ZEVMIN.</p>
+
+    <div class="grid">
+
+      <div class="card">
+        <div>
+          <div class="cover">
+            <svg viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg">
+              <path d="M50 250 L170 40 L290 250 L410 40 L530 250 L650 40 L770 250 L890 40 L1010 250 L1130 40"
+              stroke="white" stroke-width="26" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="category">PDF SCORE</div>
+          <div class="title">Score Title 01</div>
+          <div class="meta">Guitar arrangement<br>PDF download</div>
+        </div>
+        <div class="bottom">
+          <div class="price">₩5,000</div>
+          <a class="button" href="#">Coming Soon</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          <div class="cover">
+            <svg viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg">
+              <path d="M50 250 L170 40 L290 250 L410 40 L530 250 L650 40 L770 250 L890 40 L1010 250 L1130 40"
+              stroke="white" stroke-width="26" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="category">PDF SCORE</div>
+          <div class="title">Score Title 02</div>
+          <div class="meta">Guitar arrangement<br>PDF download</div>
+        </div>
+        <div class="bottom">
+          <div class="price">₩6,000</div>
+          <a class="button" href="#">Coming Soon</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          <div class="cover">
+            <svg viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg">
+              <path d="M50 250 L170 40 L290 250 L410 40 L530 250 L650 40 L770 250 L890 40 L1010 250 L1130 40"
+              stroke="white" stroke-width="26" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="category">PDF SCORE</div>
+          <div class="title">Score Title 03</div>
+          <div class="meta">Guitar arrangement<br>PDF download</div>
+        </div>
+        <div class="bottom">
+          <div class="price">₩7,000</div>
+          <a class="button" href="#">Coming Soon</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="info">
+  <h2>ZEVMIN</h2>
+  <p>
+    A minimal guitar score store built for clean PDF arrangements.
+    Payment and automatic email delivery will be connected in the next version.
+  </p>
+</section>
+
+<footer class="footer">
+  © ZEVMIN. All rights reserved.
+</footer>
 
 </body>
 </html>
