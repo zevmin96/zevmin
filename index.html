@@ -9,183 +9,69 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 button,input{font-family:inherit}
-
 .view{display:none;min-height:100vh}
 .view.active{display:block}
 
-.hero{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:40px 20px;
-  overflow:hidden;
-}
-
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 20px;overflow:hidden}
 .logo{width:72vw;max-width:620px;margin:auto}
 .logo svg{width:100%;overflow:visible}
-
-.part{
-  transition:
-    transform 2.8s cubic-bezier(.16,1,.3,1),
-    opacity 1.2s ease;
-}
-
-/* 시작: 크기는 유지, 거리만 크게 */
+.part{transition:transform 2.8s cubic-bezier(.16,1,.3,1),opacity 1.2s ease}
 .logo.split .m{transform:translateX(-210px)}
 .logo.split .i{transform:translateX(0)}
 .logo.split .n{transform:translateX(210px)}
-
-.logo.join .m,
-.logo.join .i,
-.logo.join .n{transform:translateX(0)}
-
+.logo.join .m,.logo.join .i,.logo.join .n{transform:translateX(0)}
 .logo.exit .m{transform:translateX(-270px);opacity:0}
-.logo.exit .i{transform:translateX(0);opacity:0}
+.logo.exit .i{opacity:0}
 .logo.exit .n{transform:translateX(270px);opacity:0}
 
-.brand{
-  font-size:clamp(40px,7vw,82px);
-  letter-spacing:.35em;
-  margin-top:42px;
-  margin-left:.35em;
-  font-weight:600;
-  transition:opacity 1s ease,transform 1s ease;
-}
-
-.enter{
-  margin-top:48px;
-  background:none;
-  border:none;
-  color:#aaa;
-  letter-spacing:.35em;
-  font-size:13px;
-  cursor:pointer;
-  transition:opacity 1s ease,color .3s ease;
-}
-
+.brand{font-size:clamp(40px,7vw,82px);letter-spacing:.35em;margin-top:42px;margin-left:.35em;font-weight:600;transition:opacity 1s ease,transform 1s ease}
+.enter{margin-top:48px;background:none;border:none;color:#aaa;letter-spacing:.35em;font-size:13px;cursor:pointer;transition:opacity 1s ease,color .3s ease}
 .enter:hover{color:#fff}
 .hero.fade .brand,.hero.fade .enter{opacity:0;transform:translateY(18px)}
 
 .app{background:#070707;min-height:100vh;opacity:0;transition:opacity .9s ease}
 .app.active{opacity:1}
-
-.topbar{
-  position:sticky;
-  top:0;
-  z-index:10;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:18px 22px;
-  background:rgba(7,7,7,.82);
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid #1d1d1d;
-}
-
+.topbar{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:18px 22px;background:rgba(7,7,7,.82);backdrop-filter:blur(18px);border-bottom:1px solid #1d1d1d}
 .top-logo{letter-spacing:.28em;font-weight:700;font-size:14px}
 .langs{display:flex;gap:8px}
-.lang-btn{
-  border:1px solid #333;
-  background:#111;
-  color:#888;
-  padding:8px 13px;
-  border-radius:999px;
-  font-size:12px;
-  cursor:pointer;
-  transition:.35s cubic-bezier(.22,1,.36,1);
-}
+.lang-btn{border:1px solid #333;background:#111;color:#888;padding:8px 13px;border-radius:999px;font-size:12px;cursor:pointer;transition:.35s}
 .lang-btn.active{background:#fff;color:#000;border-color:#fff}
 
-.page{
-  display:none;
-  opacity:0;
-  transform:translateY(18px);
-  transition:
-    opacity .55s cubic-bezier(.22,1,.36,1),
-    transform .55s cubic-bezier(.22,1,.36,1);
-}
-
+.page{display:none;opacity:0;transform:translateY(18px);transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1)}
 .page.active{display:block;opacity:1;transform:translateY(0)}
 .inner{max-width:1120px;margin:auto;padding:64px 22px}
-
-.lang-content{
-  transition:opacity .45s ease,transform .45s ease,filter .45s ease;
-}
-.lang-content.switching{
-  opacity:0;
-  transform:translateY(8px);
-  filter:blur(8px);
-}
+.lang-content{transition:opacity .45s ease,transform .45s ease,filter .45s ease}
+.lang-content.switching{opacity:0;transform:translateY(8px);filter:blur(8px)}
 
 h1{font-size:clamp(40px,6vw,74px);margin-bottom:14px}
 .sub{color:#888;font-size:18px;margin-bottom:34px}
-
-.search,.input{
-  width:100%;
-  padding:19px 22px;
-  border:1px solid #2d2d2d;
-  border-radius:30px;
-  background:linear-gradient(180deg,#171717,#101010);
-  color:white;
-  font-size:17px;
-  outline:none;
-}
-
+.search,.input{width:100%;padding:19px 22px;border:1px solid #2d2d2d;border-radius:30px;background:linear-gradient(180deg,#171717,#101010);color:white;font-size:17px;outline:none}
 .search{margin-bottom:36px}
 .search::placeholder,.input::placeholder{color:#666}
 
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:24px}
-
-.card,.panel{
-  background:linear-gradient(180deg,#181818,#101010);
-  border:1px solid #2d2d2d;
-  border-radius:42px;
-}
-
-.card{
-  cursor:pointer;
-  padding:28px;
-  min-height:385px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  transition:.35s cubic-bezier(.22,1,.36,1);
-}
-
+.card,.panel{background:linear-gradient(180deg,#181818,#101010);border:1px solid #2d2d2d;border-radius:42px}
+.card{cursor:pointer;padding:28px;min-height:430px;display:flex;flex-direction:column;justify-content:space-between;transition:.35s cubic-bezier(.22,1,.36,1)}
 .card:hover{transform:translateY(-6px);border-color:#555}
 
-.cover,.detail-cover{
-  background:radial-gradient(circle at top,#303030,#080808 70%);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.cover{height:185px;border-radius:34px;margin-bottom:26px}
-.cover svg{width:78%}
-.detail-cover{height:300px;border-radius:38px;margin-bottom:34px}
-.detail-cover svg{width:70%;max-width:720px}
+.preview{position:relative;height:240px;border-radius:34px;background:#f5f5f5;color:#000;overflow:hidden;margin-bottom:26px}
+.preview-title{position:absolute;top:18px;left:0;width:100%;text-align:center;font-size:26px;font-weight:700;z-index:3;color:#000}
+.preview-blur{position:absolute;left:0;right:0;top:64px;bottom:0;filter:blur(7px);opacity:.55;padding:18px}
+.staff{height:46px;border-top:2px solid #111;border-bottom:2px solid #111;margin-bottom:28px;position:relative}
+.staff:before,.staff:after{content:"";position:absolute;left:0;right:0;border-top:2px solid #111}
+.staff:before{top:14px}.staff:after{top:28px}
+.notes{font-size:30px;letter-spacing:18px;line-height:1.3;white-space:nowrap}
 
 .category{color:#777;font-size:13px;letter-spacing:.14em;margin-bottom:10px}
 .title{font-size:26px;margin-bottom:8px}
 .meta{color:#888;font-size:15px;line-height:1.7}
 .bottom{display:flex;justify-content:space-between;align-items:center;margin-top:30px}
 .price{font-size:24px;font-weight:700}
-
-.small-btn,.primary{
-  background:#fff;
-  color:#000;
-  border:none;
-  font-weight:800;
-  cursor:pointer;
-}
-
+.small-btn,.primary{background:#fff;color:#000;border:none;font-weight:800;cursor:pointer}
 .small-btn{padding:13px 20px;border-radius:999px;font-size:14px}
 .primary{width:100%;padding:18px;border-radius:999px;font-size:17px;margin-top:30px}
-
 .panel{padding:32px}
+.detail-preview{height:520px;margin-bottom:34px}
 .back{color:#888;background:none;border:none;font-size:15px;margin-bottom:34px;cursor:pointer}
 .specs{color:#888;line-height:1.9;margin-top:16px}
 .notice{color:#777;font-size:14px;line-height:1.7;margin-top:20px}
@@ -195,15 +81,13 @@ h1{font-size:clamp(40px,6vw,74px);margin-bottom:14px}
 @media(max-width:600px){
   .brand{font-size:42px;letter-spacing:.28em;margin-left:.28em}
   .logo{width:72vw;max-width:560px}
-
   .logo.split .m{transform:translateX(-120px)}
   .logo.split .n{transform:translateX(120px)}
-
   .logo.exit .m{transform:translateX(-170px);opacity:0}
   .logo.exit .n{transform:translateX(170px);opacity:0}
-
   .inner{padding:48px 20px}
   .card,.panel{border-radius:38px}
+  .detail-preview{height:430px}
 }
 </style>
 </head>
@@ -230,7 +114,7 @@ h1{font-size:clamp(40px,6vw,74px);margin-bottom:14px}
   </div>
 
   <div id="scoresPage" class="page inner active">
-    <div class="lang-content" id="scoresContent">
+    <div class="lang-content">
       <h1 id="scoresTitle"></h1>
       <p class="sub" id="scoresSub"></p>
       <input class="search" id="searchInput">
@@ -240,10 +124,10 @@ h1{font-size:clamp(40px,6vw,74px);margin-bottom:14px}
   </div>
 
   <div id="detailPage" class="page inner">
-    <div class="lang-content" id="detailContent">
+    <div class="lang-content">
       <button class="back" id="backScores" onclick="showPage('scores')"></button>
       <div class="panel">
-        <div class="detail-cover" id="detailCover"></div>
+        <div class="preview detail-preview" id="detailPreview"></div>
         <div class="category">PDF SCORE</div>
         <h1 id="detailTitle"></h1>
         <p class="sub" id="detailDesc"></p>
@@ -255,7 +139,7 @@ h1{font-size:clamp(40px,6vw,74px);margin-bottom:14px}
   </div>
 
   <div id="checkoutPage" class="page inner">
-    <div class="lang-content" id="checkoutContent">
+    <div class="lang-content">
       <button class="back" id="backDetail" onclick="showPage('detail')"></button>
       <div class="panel">
         <h1 id="checkoutTitle"></h1>
@@ -269,10 +153,11 @@ h1{font-size:clamp(40px,6vw,74px);margin-bottom:14px}
   </div>
 
   <div id="successPage" class="page inner">
-    <div class="lang-content" id="successContent">
+    <div class="lang-content">
       <div class="panel">
         <h1 id="successTitle"></h1>
         <p class="sub" id="successText"></p>
+        <button class="primary" id="downloadBtn" onclick="alert('실제 PDF 다운로드는 결제 연동 후 활성화됩니다.')"></button>
         <button class="primary" id="backToScores" onclick="showPage('scores')"></button>
       </div>
     </div>
@@ -284,18 +169,14 @@ h1{font-size:clamp(40px,6vw,74px);margin-bottom:14px}
 <script>
 const logo = `
 <svg viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg">
-  <path class="part m" d="M50 250 L170 40 L290 250 L410 40 L530 250"
-  stroke="white" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <path class="part i" d="M530 250 L650 40 L770 250"
-  stroke="white" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <path class="part n" d="M770 250 L890 40 L1010 250 L1130 40"
-  stroke="white" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="part m" d="M50 250 L170 40 L290 250 L410 40 L530 250" stroke="white" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="part i" d="M530 250 L650 40 L770 250" stroke="white" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="part n" d="M770 250 L890 40 L1010 250 L1130 40" stroke="white" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`;
 
 document.getElementById("mainLogo").innerHTML = logo;
 
 setTimeout(()=>{
-  const mainLogo = document.getElementById("mainLogo");
   mainLogo.classList.remove("split");
   mainLogo.classList.add("join");
 },700);
@@ -305,138 +186,118 @@ let selectedScore = null;
 
 const text = {
   ko:{
-    scores:"악보",
-    sub:"ZEVMIN 기타 악보를 검색하세요.",
-    search:"악보 검색",
-    noResult:"검색 결과가 없습니다.",
-    backScores:"← 악보 목록",
-    backDetail:"← 상세 페이지",
-    purchase:"구매하기",
-    checkout:"결제",
-    email:"이메일",
-    pay:"결제하기",
+    scores:"악보", sub:"ZEVMIN 기타 악보를 검색하세요.", search:"악보 검색", noResult:"검색 결과가 없습니다.",
+    backScores:"← 악보 목록", backDetail:"← 상세 페이지", purchase:"구매하기",
+    checkout:"결제", email:"이메일", pay:"결제하기",
     notice:"현재는 실제 결제 연결 전 테스트 페이지입니다.<br>다음 단계에서 토스페이먼츠를 연결하면 결제 후 PDF가 자동 발송됩니다.",
-    success:"주문 완료",
-    backToScores:"악보 목록으로",
-    format:"파일 형식: PDF<br>전달 방식: 이메일 + 다운로드 링크<br>결제 방식: 카드결제 준비 중",
+    success:"주문 완료", backToScores:"악보 목록으로", download:"PDF 다운로드",
+    format:"파일 형식: PDF<br>편곡: 이민형<br>전달 방식: 이메일 + 다운로드 링크<br>결제 방식: 카드결제 준비 중",
     complete:"주문 테스트가 완료되었습니다.<br>이 주소로 PDF가 발송되는 구조로 연결될 예정입니다.",
-    emailAlert:"이메일을 입력해주세요.",
-    view:"보기"
+    emailAlert:"이메일을 입력해주세요.", view:"보기"
   },
   en:{
-    scores:"Scores",
-    sub:"Search ZEVMIN guitar scores.",
-    search:"Search scores",
-    noResult:"No scores found.",
-    backScores:"← Scores",
-    backDetail:"← Detail",
-    purchase:"Purchase",
-    checkout:"Checkout",
-    email:"Email",
-    pay:"Pay",
+    scores:"Scores", sub:"Search ZEVMIN guitar scores.", search:"Search scores", noResult:"No scores found.",
+    backScores:"← Scores", backDetail:"← Detail", purchase:"Purchase",
+    checkout:"Checkout", email:"Email", pay:"Pay",
     notice:"This is a test checkout page before payment integration.<br>In the next version, card payment and automatic PDF email delivery will be connected.",
-    success:"Order Complete",
-    backToScores:"Back to Scores",
-    format:"Format: PDF<br>Delivery: Email + Download Link<br>Payment: Card payment preparation",
+    success:"Order Complete", backToScores:"Back to Scores", download:"Download PDF",
+    format:"Format: PDF<br>Arrangement: Minhyung Lee<br>Delivery: Email + Download Link<br>Payment: Card payment preparation",
     complete:"Your test order has been completed.<br>The PDF delivery system will be connected to this email address.",
-    emailAlert:"Please enter your email.",
-    view:"View"
+    emailAlert:"Please enter your email.", view:"View"
   }
 };
 
 const scores = [
-  {title:"Unravel", price:"₩5,000", descKo:"기타 편곡 · PDF 다운로드", descEn:"Guitar arrangement · PDF download", keywords:"unravel tokyo ghoul guitar score"},
-  {title:"Canon Rock", price:"₩7,000", descKo:"기타 편곡 · PDF 다운로드", descEn:"Guitar arrangement · PDF download", keywords:"canon rock guitar score"},
-  {title:"Sparkle", price:"₩6,000", descKo:"기타 편곡 · PDF 다운로드", descEn:"Guitar arrangement · PDF download", keywords:"sparkle your name ost guitar score"}
+  {
+    title:"물빠나",
+    price:"₩2,000",
+    descKo:"PDF 악보 · 미리보기 제공",
+    descEn:"PDF score · Preview available",
+    keywords:"물빠나 drowning love chasing kou guitar score zevmin"
+  }
 ];
 
+function preview(title){
+  return `
+  <div class="preview-title">${title}</div>
+  <div class="preview-blur">
+    <div class="staff"><div class="notes">♪ ♫ ♩ ♬ ♪ ♫</div></div>
+    <div class="staff"><div class="notes">0 7 4 5 7 9 5</div></div>
+    <div class="staff"><div class="notes">T A B 0 4 7 5</div></div>
+    <div class="staff"><div class="notes">H P sl. AH</div></div>
+  </div>`;
+}
+
 function enterSite(){
-  const mainLogo = document.getElementById("mainLogo");
-  document.getElementById("heroBox").classList.add("fade");
+  heroBox.classList.add("fade");
   mainLogo.classList.remove("join");
   mainLogo.classList.add("exit");
 
   setTimeout(()=>{
-    document.getElementById("home").classList.remove("active");
-    document.getElementById("app").classList.add("active");
+    home.classList.remove("active");
+    app.classList.add("active");
     setLang(lang);
     showPage("scores");
   },1600);
 }
 
 function setLangSmooth(next){
-  if(lang === next) return;
-
-  const contents = document.querySelectorAll(".lang-content");
-  contents.forEach(el=>el.classList.add("switching"));
-
+  if(lang===next)return;
+  document.querySelectorAll(".lang-content").forEach(el=>el.classList.add("switching"));
   setTimeout(()=>{
     setLang(next);
-    contents.forEach(el=>el.classList.remove("switching"));
+    document.querySelectorAll(".lang-content").forEach(el=>el.classList.remove("switching"));
   },280);
 }
 
 function setLang(next){
-  lang = next;
-  document.getElementById("koBtn").classList.toggle("active", lang==="ko");
-  document.getElementById("enBtn").classList.toggle("active", lang==="en");
-
-  document.getElementById("scoresTitle").textContent = text[lang].scores;
-  document.getElementById("scoresSub").textContent = text[lang].sub;
-  document.getElementById("searchInput").placeholder = text[lang].search;
-  document.getElementById("noResult").textContent = text[lang].noResult;
-  document.getElementById("backScores").textContent = text[lang].backScores;
-  document.getElementById("backDetail").textContent = text[lang].backDetail;
-  document.getElementById("purchaseBtn").textContent = text[lang].purchase;
-  document.getElementById("checkoutTitle").textContent = text[lang].checkout;
-  document.getElementById("emailLabel").textContent = text[lang].email;
-  document.getElementById("payBtn").textContent = text[lang].pay;
-  document.getElementById("paymentNotice").innerHTML = text[lang].notice;
-  document.getElementById("successTitle").textContent = text[lang].success;
-  document.getElementById("backToScores").textContent = text[lang].backToScores;
-
-  if(selectedScore){updateDetailTexts();}
+  lang=next;
+  koBtn.classList.toggle("active",lang==="ko");
+  enBtn.classList.toggle("active",lang==="en");
+  scoresTitle.textContent=text[lang].scores;
+  scoresSub.textContent=text[lang].sub;
+  searchInput.placeholder=text[lang].search;
+  noResult.textContent=text[lang].noResult;
+  backScores.textContent=text[lang].backScores;
+  backDetail.textContent=text[lang].backDetail;
+  purchaseBtn.textContent=text[lang].purchase;
+  checkoutTitle.textContent=text[lang].checkout;
+  emailLabel.textContent=text[lang].email;
+  payBtn.textContent=text[lang].pay;
+  paymentNotice.innerHTML=text[lang].notice;
+  successTitle.textContent=text[lang].success;
+  backToScores.textContent=text[lang].backToScores;
+  downloadBtn.textContent=text[lang].download;
+  if(selectedScore)updateDetailTexts();
   renderScores(filterScores());
 }
 
 function showPage(page){
-  ["scoresPage","detailPage","checkoutPage","successPage"].forEach(id=>{
-    document.getElementById(id).classList.remove("active");
-  });
-
+  ["scoresPage","detailPage","checkoutPage","successPage"].forEach(id=>document.getElementById(id).classList.remove("active"));
   setTimeout(()=>{
-    ["scoresPage","detailPage","checkoutPage","successPage"].forEach(id=>{
-      document.getElementById(id).style.display="none";
-    });
-
-    const target = document.getElementById(page+"Page");
+    ["scoresPage","detailPage","checkoutPage","successPage"].forEach(id=>document.getElementById(id).style.display="none");
+    const target=document.getElementById(page+"Page");
     target.style.display="block";
-
     setTimeout(()=>target.classList.add("active"),30);
     window.scrollTo({top:0,behavior:"smooth"});
   },180);
 }
 
 function filterScores(){
-  const keyword = document.getElementById("searchInput").value.toLowerCase().trim();
-  return scores.filter(score =>
-    score.title.toLowerCase().includes(keyword) ||
-    score.keywords.toLowerCase().includes(keyword)
-  );
+  const keyword=searchInput.value.toLowerCase().trim();
+  return scores.filter(score=>score.title.toLowerCase().includes(keyword)||score.keywords.toLowerCase().includes(keyword));
 }
 
 function renderScores(list){
-  const grid = document.getElementById("scoreGrid");
-  grid.innerHTML = "";
-
+  scoreGrid.innerHTML="";
   list.forEach(score=>{
-    const desc = lang==="ko" ? score.descKo : score.descEn;
-    const card = document.createElement("div");
-    card.className = "card";
-    card.onclick = () => openDetail(score);
-    card.innerHTML = `
+    const desc=lang==="ko"?score.descKo:score.descEn;
+    const card=document.createElement("div");
+    card.className="card";
+    card.onclick=()=>openDetail(score);
+    card.innerHTML=`
       <div>
-        <div class="cover">${logo}</div>
+        <div class="preview">${preview(score.title)}</div>
         <div class="category">PDF SCORE</div>
         <div class="title">${score.title}</div>
         <div class="meta">${desc.replace(" · ","<br>")}</div>
@@ -444,28 +305,26 @@ function renderScores(list){
       <div class="bottom">
         <div class="price">${score.price}</div>
         <div class="small-btn">${text[lang].view}</div>
-      </div>
-    `;
-    grid.appendChild(card);
+      </div>`;
+    scoreGrid.appendChild(card);
   });
-
-  document.getElementById("noResult").style.display = list.length ? "none" : "block";
+  noResult.style.display=list.length?"none":"block";
 }
 
 function openDetail(score){
-  selectedScore = score;
-  document.getElementById("detailCover").innerHTML = logo;
+  selectedScore=score;
+  detailPreview.innerHTML=preview(score.title);
   updateDetailTexts();
   showPage("detail");
 }
 
 function updateDetailTexts(){
-  const desc = lang==="ko" ? selectedScore.descKo : selectedScore.descEn;
-  document.getElementById("detailTitle").textContent = selectedScore.title;
-  document.getElementById("detailDesc").textContent = desc;
-  document.getElementById("detailPrice").textContent = selectedScore.price;
-  document.getElementById("detailSpecs").innerHTML = text[lang].format;
-  document.getElementById("checkoutItem").textContent = `${selectedScore.title} · ${selectedScore.price}`;
+  const desc=lang==="ko"?selectedScore.descKo:selectedScore.descEn;
+  detailTitle.textContent=selectedScore.title;
+  detailDesc.textContent=desc;
+  detailPrice.textContent=selectedScore.price;
+  detailSpecs.innerHTML=text[lang].format;
+  checkoutItem.textContent=`${selectedScore.title} · ${selectedScore.price}`;
 }
 
 function showCheckout(){
@@ -474,23 +333,13 @@ function showCheckout(){
 }
 
 function completePayment(){
-  const email = document.getElementById("emailInput").value.trim();
-
-  if(!email){
-    alert(text[lang].emailAlert);
-    return;
-  }
-
-  document.getElementById("successText").innerHTML =
-    `${selectedScore.title} ${text[lang].complete}<br><br>${email}`;
-
+  const email=emailInput.value.trim();
+  if(!email){alert(text[lang].emailAlert);return;}
+  successText.innerHTML=`${selectedScore.title} ${text[lang].complete}<br><br>${email}`;
   showPage("success");
 }
 
-document.getElementById("searchInput").addEventListener("input",()=>{
-  renderScores(filterScores());
-});
-
+searchInput.addEventListener("input",()=>renderScores(filterScores()));
 setLang("ko");
 </script>
 
