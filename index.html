@@ -13,55 +13,147 @@ button,input{font-family:inherit}
 .view{display:none;min-height:100vh}
 .view.active{display:block}
 
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 20px;overflow:hidden}
-.logo{width:92vw;max-width:1150px;margin:auto}
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:40px 20px;
+  overflow:hidden;
+}
+
+.logo{width:68vw;max-width:720px;margin:auto}
 .logo svg{width:100%;overflow:visible}
 
 .part{transition:transform 2.6s cubic-bezier(.16,1,.3,1),opacity 1.2s ease}
-
-/* 시작: /\/\    /\    /\/ */
-.logo.split .m{transform:translateX(-190px)}
+.logo.split .m{transform:translateX(-110px)}
 .logo.split .i{transform:translateX(0)}
-.logo.split .n{transform:translateX(190px)}
-
-/* 완성: /\/\/\/\/ */
+.logo.split .n{transform:translateX(110px)}
 .logo.join .m,.logo.join .i,.logo.join .n{transform:translateX(0)}
-
-/* ENTER 후 다시 벌어지며 사라짐 */
-.logo.exit .m{transform:translateX(-260px);opacity:0}
+.logo.exit .m{transform:translateX(-145px);opacity:0}
 .logo.exit .i{transform:translateX(0);opacity:0}
-.logo.exit .n{transform:translateX(260px);opacity:0}
+.logo.exit .n{transform:translateX(145px);opacity:0}
 
-.brand{font-size:clamp(48px,10vw,120px);letter-spacing:.35em;margin-top:42px;margin-left:.35em;font-weight:600;transition:opacity 1s ease,transform 1s ease}
-.enter{margin-top:48px;background:none;border:none;color:#aaa;letter-spacing:.35em;font-size:13px;cursor:pointer;transition:opacity 1s ease,color .3s ease}
+.brand{
+  font-size:clamp(40px,7vw,82px);
+  letter-spacing:.35em;
+  margin-top:42px;
+  margin-left:.35em;
+  font-weight:600;
+  transition:opacity 1s ease,transform 1s ease;
+}
+
+.enter{
+  margin-top:48px;
+  background:none;
+  border:none;
+  color:#aaa;
+  letter-spacing:.35em;
+  font-size:13px;
+  cursor:pointer;
+  transition:opacity 1s ease,color .3s ease;
+}
+
 .enter:hover{color:#fff}
 .hero.fade .brand,.hero.fade .enter{opacity:0;transform:translateY(18px)}
 
 .app{background:#070707;min-height:100vh;opacity:0;transition:opacity .9s ease}
 .app.active{opacity:1}
 
-.topbar{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:18px 22px;background:rgba(7,7,7,.82);backdrop-filter:blur(18px);border-bottom:1px solid #1d1d1d}
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:10;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 22px;
+  background:rgba(7,7,7,.82);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid #1d1d1d;
+}
+
 .top-logo{letter-spacing:.28em;font-weight:700;font-size:14px}
 .langs{display:flex;gap:8px}
-.lang-btn{border:1px solid #333;background:#111;color:#888;padding:8px 13px;border-radius:999px;font-size:12px;cursor:pointer}
+
+.lang-btn{
+  border:1px solid #333;
+  background:#111;
+  color:#888;
+  padding:8px 13px;
+  border-radius:999px;
+  font-size:12px;
+  cursor:pointer;
+  transition:.35s cubic-bezier(.22,1,.36,1);
+}
+
 .lang-btn.active{background:#fff;color:#000;border-color:#fff}
 
-.page{display:none;opacity:0;transform:translateY(18px);transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1)}
+.page{
+  display:none;
+  opacity:0;
+  transform:translateY(18px);
+  transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1);
+}
+
 .page.active{display:block;opacity:1;transform:translateY(0)}
 .inner{max-width:1120px;margin:auto;padding:64px 22px}
+
+.lang-content{
+  transition:opacity .45s ease,transform .45s ease,filter .45s ease;
+}
+
+.lang-content.switching{
+  opacity:0;
+  transform:translateY(8px);
+  filter:blur(8px);
+}
+
 h1{font-size:clamp(40px,6vw,74px);margin-bottom:14px}
 .sub{color:#888;font-size:18px;margin-bottom:34px}
 
-.search,.input{width:100%;padding:19px 22px;border:1px solid #2d2d2d;border-radius:30px;background:linear-gradient(180deg,#171717,#101010);color:white;font-size:17px;outline:none}
+.search,.input{
+  width:100%;
+  padding:19px 22px;
+  border:1px solid #2d2d2d;
+  border-radius:30px;
+  background:linear-gradient(180deg,#171717,#101010);
+  color:white;
+  font-size:17px;
+  outline:none;
+}
+
 .search{margin-bottom:36px}
 .search::placeholder,.input::placeholder{color:#666}
 
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:24px}
-.card,.panel{background:linear-gradient(180deg,#181818,#101010);border:1px solid #2d2d2d;border-radius:42px}
-.card{cursor:pointer;padding:28px;min-height:385px;display:flex;flex-direction:column;justify-content:space-between;transition:.35s cubic-bezier(.22,1,.36,1)}
+
+.card,.panel{
+  background:linear-gradient(180deg,#181818,#101010);
+  border:1px solid #2d2d2d;
+  border-radius:42px;
+}
+
+.card{
+  cursor:pointer;
+  padding:28px;
+  min-height:385px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  transition:.35s cubic-bezier(.22,1,.36,1);
+}
+
 .card:hover{transform:translateY(-6px);border-color:#555}
 
-.cover,.detail-cover{background:radial-gradient(circle at top,#303030,#080808 70%);display:flex;align-items:center;justify-content:center}
+.cover,.detail-cover{
+  background:radial-gradient(circle at top,#303030,#080808 70%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
 .cover{height:185px;border-radius:34px;margin-bottom:26px}
 .cover svg{width:78%}
 .detail-cover{height:300px;border-radius:38px;margin-bottom:34px}
@@ -72,9 +164,18 @@ h1{font-size:clamp(40px,6vw,74px);margin-bottom:14px}
 .meta{color:#888;font-size:15px;line-height:1.7}
 .bottom{display:flex;justify-content:space-between;align-items:center;margin-top:30px}
 .price{font-size:24px;font-weight:700}
-.small-btn,.primary{background:#fff;color:#000;border:none;font-weight:800;cursor:pointer}
+
+.small-btn,.primary{
+  background:#fff;
+  color:#000;
+  border:none;
+  font-weight:800;
+  cursor:pointer;
+}
+
 .small-btn{padding:13px 20px;border-radius:999px;font-size:14px}
 .primary{width:100%;padding:18px;border-radius:999px;font-size:17px;margin-top:30px}
+
 .panel{padding:32px}
 .back{color:#888;background:none;border:none;font-size:15px;margin-bottom:34px;cursor:pointer}
 .specs{color:#888;line-height:1.9;margin-top:16px}
@@ -83,12 +184,12 @@ h1{font-size:clamp(40px,6vw,74px);margin-bottom:14px}
 .footer{padding:40px 20px;text-align:center;color:#555;font-size:13px}
 
 @media(max-width:600px){
-  .brand{font-size:48px;letter-spacing:.28em;margin-left:.28em}
-  .logo{width:105vw}
-  .logo.split .m{transform:translateX(-90px)}
-  .logo.split .n{transform:translateX(90px)}
-  .logo.exit .m{transform:translateX(-130px);opacity:0}
-  .logo.exit .n{transform:translateX(130px);opacity:0}
+  .brand{font-size:42px;letter-spacing:.28em;margin-left:.28em}
+  .logo{width:72vw;max-width:560px}
+  .logo.split .m{transform:translateX(-42px)}
+  .logo.split .n{transform:translateX(42px)}
+  .logo.exit .m{transform:translateX(-70px);opacity:0}
+  .logo.exit .n{transform:translateX(70px);opacity:0}
   .inner{padding:48px 20px}
   .card,.panel{border-radius:38px}
 }
@@ -111,49 +212,57 @@ h1{font-size:clamp(40px,6vw,74px);margin-bottom:14px}
   <div class="topbar">
     <div class="top-logo">ZEVMIN</div>
     <div class="langs">
-      <button id="koBtn" class="lang-btn active" onclick="setLang('ko')">KOR</button>
-      <button id="enBtn" class="lang-btn" onclick="setLang('en')">ENG</button>
+      <button id="koBtn" class="lang-btn active" onclick="setLangSmooth('ko')">KOR</button>
+      <button id="enBtn" class="lang-btn" onclick="setLangSmooth('en')">ENG</button>
     </div>
   </div>
 
-  <div id="scoresPage" class="page inner">
-    <h1 id="scoresTitle"></h1>
-    <p class="sub" id="scoresSub"></p>
-    <input class="search" id="searchInput">
-    <div class="grid" id="scoreGrid"></div>
-    <div class="no-result" id="noResult"></div>
+  <div id="scoresPage" class="page inner active">
+    <div class="lang-content" id="scoresContent">
+      <h1 id="scoresTitle"></h1>
+      <p class="sub" id="scoresSub"></p>
+      <input class="search" id="searchInput">
+      <div class="grid" id="scoreGrid"></div>
+      <div class="no-result" id="noResult"></div>
+    </div>
   </div>
 
   <div id="detailPage" class="page inner">
-    <button class="back" id="backScores" onclick="showPage('scores')"></button>
-    <div class="panel">
-      <div class="detail-cover" id="detailCover"></div>
-      <div class="category">PDF SCORE</div>
-      <h1 id="detailTitle"></h1>
-      <p class="sub" id="detailDesc"></p>
-      <div class="price" id="detailPrice"></div>
-      <div class="specs" id="detailSpecs"></div>
-      <button class="primary" id="purchaseBtn" onclick="showCheckout()"></button>
+    <div class="lang-content" id="detailContent">
+      <button class="back" id="backScores" onclick="showPage('scores')"></button>
+      <div class="panel">
+        <div class="detail-cover" id="detailCover"></div>
+        <div class="category">PDF SCORE</div>
+        <h1 id="detailTitle"></h1>
+        <p class="sub" id="detailDesc"></p>
+        <div class="price" id="detailPrice"></div>
+        <div class="specs" id="detailSpecs"></div>
+        <button class="primary" id="purchaseBtn" onclick="showCheckout()"></button>
+      </div>
     </div>
   </div>
 
   <div id="checkoutPage" class="page inner">
-    <button class="back" id="backDetail" onclick="showPage('detail')"></button>
-    <div class="panel">
-      <h1 id="checkoutTitle"></h1>
-      <p class="sub" id="checkoutItem"></p>
-      <label id="emailLabel"></label>
-      <input class="input" id="emailInput" type="email" placeholder="your@email.com">
-      <button class="primary" id="payBtn" onclick="completePayment()"></button>
-      <p class="notice" id="paymentNotice"></p>
+    <div class="lang-content" id="checkoutContent">
+      <button class="back" id="backDetail" onclick="showPage('detail')"></button>
+      <div class="panel">
+        <h1 id="checkoutTitle"></h1>
+        <p class="sub" id="checkoutItem"></p>
+        <label id="emailLabel"></label>
+        <input class="input" id="emailInput" type="email" placeholder="your@email.com">
+        <button class="primary" id="payBtn" onclick="completePayment()"></button>
+        <p class="notice" id="paymentNotice"></p>
+      </div>
     </div>
   </div>
 
   <div id="successPage" class="page inner">
-    <div class="panel">
-      <h1 id="successTitle"></h1>
-      <p class="sub" id="successText"></p>
-      <button class="primary" id="backToScores" onclick="showPage('scores')"></button>
+    <div class="lang-content" id="successContent">
+      <div class="panel">
+        <h1 id="successTitle"></h1>
+        <p class="sub" id="successText"></p>
+        <button class="primary" id="backToScores" onclick="showPage('scores')"></button>
+      </div>
     </div>
   </div>
 
@@ -163,15 +272,10 @@ h1{font-size:clamp(40px,6vw,74px);margin-bottom:14px}
 <script>
 const logo = `
 <svg viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg">
-  <!-- M: /\\/\\ -->
   <path class="part m" d="M50 250 L170 40 L290 250 L410 40 L530 250"
   stroke="white" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-
-  <!-- I: /\\ -->
   <path class="part i" d="M530 250 L650 40 L770 250"
   stroke="white" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-
-  <!-- N: /\\/ -->
   <path class="part n" d="M770 250 L890 40 L1010 250 L1130 40"
   stroke="white" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`;
@@ -248,6 +352,18 @@ function enterSite(){
   },1600);
 }
 
+function setLangSmooth(next){
+  if(lang === next) return;
+
+  const contents = document.querySelectorAll(".lang-content");
+  contents.forEach(el=>el.classList.add("switching"));
+
+  setTimeout(()=>{
+    setLang(next);
+    contents.forEach(el=>el.classList.remove("switching"));
+  },280);
+}
+
 function setLang(next){
   lang = next;
   document.getElementById("koBtn").classList.toggle("active", lang==="ko");
@@ -267,7 +383,7 @@ function setLang(next){
   document.getElementById("successTitle").textContent = text[lang].success;
   document.getElementById("backToScores").textContent = text[lang].backToScores;
 
-  if(selectedScore){ updateDetailTexts(); }
+  if(selectedScore){updateDetailTexts();}
   renderScores(filterScores());
 }
 
