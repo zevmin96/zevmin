@@ -7,338 +7,223 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
 body{
-  background:#000;
-  color:#fff;
+  background:#000;color:#fff;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
+button,input{font-family:inherit}
 
-section{display:none}
-section.active{display:block}
+.view{display:none;min-height:100vh}
+.view.active{display:block}
 
 .hero{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:40px 20px;
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:40px 20px;
 }
 .logo{width:82vw;max-width:1100px;margin:auto}
-.logo svg{width:100%;height:auto}
-.name{
+.logo svg{width:100%}
+.brand{
   font-size:clamp(48px,10vw,120px);
-  letter-spacing:.35em;
-  margin-top:42px;
-  margin-left:.35em;
-  font-weight:600;
+  letter-spacing:.35em;margin-top:42px;margin-left:.35em;font-weight:600;
 }
 .enter{
-  display:inline-block;
-  margin-top:48px;
-  color:#aaa;
-  text-decoration:none;
-  font-size:13px;
-  letter-spacing:.35em;
+  margin-top:48px;background:none;border:none;color:#aaa;
+  letter-spacing:.35em;font-size:13px;cursor:pointer;
 }
 
-.page{
-  min-height:100vh;
-  padding:80px 22px;
-  background:#060606;
+.app{background:#070707;min-height:100vh}
+.topbar{
+  position:sticky;top:0;z-index:10;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 22px;background:rgba(7,7,7,.82);
+  backdrop-filter:blur(18px);border-bottom:1px solid #1d1d1d;
 }
-.inner{max-width:1120px;margin:auto}
-.back{
-  color:#888;
-  text-decoration:none;
-  font-size:15px;
-  display:inline-block;
-  margin-bottom:34px;
-}
-h1{font-size:clamp(38px,6vw,72px);margin-bottom:14px}
-.subtitle{color:#888;font-size:18px;margin-bottom:34px}
+.top-logo{letter-spacing:.28em;font-weight:700;font-size:14px}
+.top-btn{background:none;border:none;color:#888;font-size:14px}
+
+.inner{max-width:1120px;margin:auto;padding:64px 22px}
+h1{font-size:clamp(40px,6vw,74px);margin-bottom:14px}
+.sub{color:#888;font-size:18px;margin-bottom:34px}
 
 .search{
-  width:100%;
-  padding:19px 22px;
-  margin-bottom:36px;
-  border-radius:30px;
-  border:1px solid #2d2d2d;
+  width:100%;padding:19px 22px;margin-bottom:36px;
+  border:1px solid #2d2d2d;border-radius:30px;
   background:linear-gradient(180deg,#171717,#101010);
-  color:white;
-  font-size:17px;
-  outline:none;
+  color:white;font-size:17px;outline:none;
 }
 .search::placeholder{color:#666}
 
 .grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
-  gap:24px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:24px;
 }
 .card{
-  cursor:pointer;
-  background:linear-gradient(180deg,#181818,#101010);
-  border:1px solid #2d2d2d;
-  border-radius:42px;
-  padding:28px;
-  min-height:385px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
+  cursor:pointer;background:linear-gradient(180deg,#181818,#101010);
+  border:1px solid #2d2d2d;border-radius:42px;
+  padding:28px;min-height:385px;
+  display:flex;flex-direction:column;justify-content:space-between;
   transition:.3s cubic-bezier(.22,1,.36,1);
 }
-.card:hover{
-  transform:translateY(-6px);
-  border-color:#555;
+.card:hover{transform:translateY(-6px);border-color:#555}
+.cover,.detail-cover{
+  background:radial-gradient(circle at top,#303030,#080808 70%);
+  display:flex;align-items:center;justify-content:center;
 }
-.cover{
-  height:185px;
-  border-radius:34px;
-  background:radial-gradient(circle at top,#2f2f2f,#080808 70%);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom:26px;
-}
+.cover{height:185px;border-radius:34px;margin-bottom:26px}
 .cover svg{width:78%}
-.category{
-  color:#777;
-  font-size:13px;
-  letter-spacing:.14em;
-  margin-bottom:10px;
-}
+.detail-cover{height:300px;border-radius:38px;margin-bottom:34px}
+.detail-cover svg{width:70%;max-width:720px}
+
+.category{color:#777;font-size:13px;letter-spacing:.14em;margin-bottom:10px}
 .title{font-size:26px;margin-bottom:8px}
 .meta{color:#888;font-size:15px;line-height:1.7}
-.bottom{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-top:30px;
-}
+.bottom{display:flex;justify-content:space-between;align-items:center;margin-top:30px}
 .price{font-size:24px;font-weight:700}
-.small-btn{
-  background:#fff;
-  color:#000;
-  padding:13px 20px;
-  border-radius:999px;
-  font-size:14px;
-  font-weight:700;
+.small-btn,.primary{
+  background:#fff;color:#000;border:none;font-weight:800;cursor:pointer;
 }
-
-.detail-card{
-  background:linear-gradient(180deg,#181818,#101010);
-  border:1px solid #2d2d2d;
-  border-radius:46px;
-  padding:32px;
-}
-.detail-cover{
-  height:300px;
-  border-radius:36px;
-  background:radial-gradient(circle at top,#303030,#080808 70%);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom:34px;
-}
-.detail-cover svg{width:70%;max-width:720px}
-.detail-info{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:18px;
-}
-.specs{
-  color:#888;
-  line-height:1.9;
-  margin-top:16px;
-}
+.small-btn{padding:13px 20px;border-radius:999px;font-size:14px}
 .primary{
-  width:100%;
-  margin-top:30px;
-  border:none;
-  background:white;
-  color:black;
-  padding:18px;
-  border-radius:999px;
-  font-size:17px;
-  font-weight:800;
+  width:100%;padding:18px;border-radius:999px;font-size:17px;margin-top:30px;
 }
 
-.pay-box{
-  max-width:620px;
-  margin:auto;
+.panel{
   background:linear-gradient(180deg,#181818,#101010);
-  border:1px solid #2d2d2d;
-  border-radius:44px;
+  border:1px solid #2d2d2d;border-radius:46px;
   padding:32px;
 }
-.pay-title{font-size:34px;margin-bottom:10px}
-.pay-item{color:#aaa;margin-bottom:28px}
+.back{
+  color:#888;background:none;border:none;font-size:15px;margin-bottom:34px;cursor:pointer;
+}
+.specs{color:#888;line-height:1.9;margin-top:16px}
 .input{
-  width:100%;
-  padding:18px 20px;
-  border-radius:24px;
-  border:1px solid #333;
-  background:#0b0b0b;
-  color:white;
-  font-size:16px;
-  margin-top:10px;
-  outline:none;
+  width:100%;padding:18px 20px;border-radius:24px;
+  border:1px solid #333;background:#0b0b0b;color:white;
+  font-size:16px;margin-top:10px;outline:none;
 }
-.notice{
-  color:#777;
-  font-size:14px;
-  line-height:1.7;
-  margin-top:20px;
-}
-.no-result{
-  display:none;
-  color:#777;
-  text-align:center;
-  margin-top:50px;
-}
-
-.footer{
-  padding:40px 20px;
-  text-align:center;
-  color:#555;
-  font-size:13px;
-}
+.notice{color:#777;font-size:14px;line-height:1.7;margin-top:20px}
+.no-result{display:none;color:#777;text-align:center;margin-top:50px}
+.footer{padding:40px 20px;text-align:center;color:#555;font-size:13px}
 
 @media(max-width:600px){
-  .name{font-size:48px;letter-spacing:.28em;margin-left:.28em}
+  .brand{font-size:48px;letter-spacing:.28em;margin-left:.28em}
   .logo{width:88vw}
-  .page{padding:60px 20px}
-  .card{border-radius:38px}
-  .detail-card,.pay-box{border-radius:38px}
+  .inner{padding:48px 20px}
+  .card,.panel{border-radius:38px}
 }
 </style>
 </head>
 
 <body>
 
-<section id="home" class="hero active">
-  <div>
-    <div class="logo">
-      <svg viewBox="0 0 1200 300">
-        <path d="M50 250 L170 40 L290 250 L410 40 L530 250 L650 40 L770 250 L890 40 L1010 250 L1130 40"
-        stroke="white" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+<section id="home" class="view active">
+  <div class="hero">
+    <div>
+      <div class="logo" id="mainLogo"></div>
+      <div class="brand">ZEVMIN</div>
+      <button class="enter" onclick="enterSite()">ENTER</button>
     </div>
-    <div class="name">ZEVMIN</div>
-    <a class="enter" href="#" onclick="showPage('scores')">ENTER</a>
   </div>
 </section>
 
-<section id="scores" class="page">
-  <div class="inner">
-    <a class="back" href="#" onclick="showPage('home')">← Home</a>
+<section id="app" class="view app">
+  <div class="topbar">
+    <div class="top-logo">ZEVMIN</div>
+    <button class="top-btn" onclick="showPage('scores')">Scores</button>
+  </div>
+
+  <div id="scoresPage" class="inner">
     <h1>Scores</h1>
-    <p class="subtitle">Search ZEVMIN guitar scores.</p>
-
-    <input class="search" id="searchInput" type="text" placeholder="Search scores">
-
+    <p class="sub">Search ZEVMIN guitar scores.</p>
+    <input class="search" id="searchInput" placeholder="Search scores">
     <div class="grid" id="scoreGrid"></div>
     <div class="no-result" id="noResult">No scores found.</div>
   </div>
-</section>
 
-<section id="detail" class="page">
-  <div class="inner">
-    <a class="back" href="#" onclick="showPage('scores')">← Scores</a>
-    <div class="detail-card">
-      <div class="detail-cover">
-        <svg viewBox="0 0 1200 300">
-          <path d="M50 250 L170 40 L290 250 L410 40 L530 250 L650 40 L770 250 L890 40 L1010 250 L1130 40"
-          stroke="white" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-
+  <div id="detailPage" class="inner" style="display:none">
+    <button class="back" onclick="showPage('scores')">← Scores</button>
+    <div class="panel">
+      <div class="detail-cover" id="detailCover"></div>
       <div class="category">PDF SCORE</div>
-      <h1 id="detailTitle">Score Title</h1>
-      <p class="subtitle" id="detailDesc">Guitar arrangement</p>
-      <div class="price" id="detailPrice">₩5,000</div>
-
+      <h1 id="detailTitle"></h1>
+      <p class="sub" id="detailDesc"></p>
+      <div class="price" id="detailPrice"></div>
       <div class="specs">
         Format: PDF<br>
         Delivery: Email + Download Link<br>
         Payment: Card payment preparation
       </div>
-
-      <button class="primary" onclick="goPayment()">Purchase</button>
+      <button class="primary" onclick="showCheckout()">Purchase</button>
     </div>
   </div>
-</section>
 
-<section id="payment" class="page">
-  <div class="inner">
-    <a class="back" href="#" onclick="showPage('detail')">← Detail</a>
-
-    <div class="pay-box">
-      <div class="pay-title">Checkout</div>
-      <div class="pay-item" id="payItem">Score Title · ₩5,000</div>
-
+  <div id="checkoutPage" class="inner" style="display:none">
+    <button class="back" onclick="showPage('detail')">← Detail</button>
+    <div class="panel">
+      <h1>Checkout</h1>
+      <p class="sub" id="checkoutItem"></p>
       <label>Email</label>
       <input class="input" id="emailInput" type="email" placeholder="your@email.com">
-
-      <button class="primary" onclick="fakePay()">Pay</button>
-
+      <button class="primary" onclick="completePayment()">Pay</button>
       <p class="notice">
         현재는 실제 결제 연결 전 테스트 페이지입니다.<br>
-        다음 단계에서 토스페이먼츠를 연결하면 카드결제 후 PDF가 자동 발송됩니다.
+        다음 단계에서 토스페이먼츠를 연결하면 결제 후 PDF가 자동 발송됩니다.
       </p>
     </div>
   </div>
+
+  <div id="successPage" class="inner" style="display:none">
+    <div class="panel">
+      <h1>Order Complete</h1>
+      <p class="sub" id="successText"></p>
+      <button class="primary" onclick="showPage('scores')">Back to Scores</button>
+    </div>
+  </div>
+
+  <footer class="footer">© ZEVMIN. All rights reserved.</footer>
 </section>
 
-<footer class="footer">
-  © ZEVMIN. All rights reserved.
-</footer>
-
 <script>
+const logo = `
+<svg viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg">
+<path d="M50 250 L170 40 L290 250 L410 40 L530 250 L650 40 L770 250 L890 40 L1010 250 L1130 40"
+stroke="white" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+
+document.getElementById("mainLogo").innerHTML = logo;
+
 const scores = [
-  {
-    title:"Unravel",
-    price:"₩5,000",
-    desc:"Guitar arrangement · PDF download",
-    keywords:"unravel tokyo ghoul guitar score"
-  },
-  {
-    title:"Canon Rock",
-    price:"₩7,000",
-    desc:"Guitar arrangement · PDF download",
-    keywords:"canon rock guitar score"
-  },
-  {
-    title:"Sparkle",
-    price:"₩6,000",
-    desc:"Guitar arrangement · PDF download",
-    keywords:"sparkle your name ost guitar score"
-  }
+  {title:"Unravel", price:"₩5,000", desc:"Guitar arrangement · PDF download", keywords:"unravel tokyo ghoul guitar score"},
+  {title:"Canon Rock", price:"₩7,000", desc:"Guitar arrangement · PDF download", keywords:"canon rock guitar score"},
+  {title:"Sparkle", price:"₩6,000", desc:"Guitar arrangement · PDF download", keywords:"sparkle your name ost guitar score"}
 ];
 
 let selectedScore = scores[0];
 
-function logoSvg(){
-  return `
-  <svg viewBox="0 0 1200 300">
-    <path d="M50 250 L170 40 L290 250 L410 40 L530 250 L650 40 L770 250 L890 40 L1010 250 L1130 40"
-    stroke="white" stroke-width="26" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>`;
+function enterSite(){
+  document.getElementById("home").classList.remove("active");
+  document.getElementById("app").classList.add("active");
+  showPage("scores");
+}
+
+function showPage(page){
+  ["scoresPage","detailPage","checkoutPage","successPage"].forEach(id=>{
+    document.getElementById(id).style.display="none";
+  });
+  document.getElementById(page+"Page").style.display="block";
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
 function renderScores(list){
   const grid = document.getElementById("scoreGrid");
   grid.innerHTML = "";
 
-  list.forEach((score, index)=>{
+  list.forEach(score=>{
     const card = document.createElement("div");
     card.className = "card";
     card.onclick = () => openDetail(score);
     card.innerHTML = `
       <div>
-        <div class="cover">${logoSvg()}</div>
+        <div class="cover">${logo}</div>
         <div class="category">PDF SCORE</div>
         <div class="title">${score.title}</div>
         <div class="meta">${score.desc.replace(" · ","<br>")}</div>
@@ -346,52 +231,46 @@ function renderScores(list){
       <div class="bottom">
         <div class="price">${score.price}</div>
         <div class="small-btn">View</div>
-      </div>
-    `;
+      </div>`;
     grid.appendChild(card);
   });
 
   document.getElementById("noResult").style.display = list.length ? "none" : "block";
 }
 
-function showPage(id){
-  document.querySelectorAll("section").forEach(sec=>sec.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-  window.scrollTo(0,0);
-}
-
 function openDetail(score){
   selectedScore = score;
+  document.getElementById("detailCover").innerHTML = logo;
   document.getElementById("detailTitle").textContent = score.title;
   document.getElementById("detailDesc").textContent = score.desc;
   document.getElementById("detailPrice").textContent = score.price;
   showPage("detail");
 }
 
-function goPayment(){
-  document.getElementById("payItem").textContent = `${selectedScore.title} · ${selectedScore.price}`;
-  showPage("payment");
+function showCheckout(){
+  document.getElementById("checkoutItem").textContent = `${selectedScore.title} · ${selectedScore.price}`;
+  showPage("checkout");
 }
 
-function fakePay(){
+function completePayment(){
   const email = document.getElementById("emailInput").value.trim();
-
   if(!email){
     alert("이메일을 입력해주세요.");
     return;
   }
 
-  alert("현재는 테스트 결제 페이지입니다. 다음 단계에서 실제 카드결제를 연결합니다.");
+  document.getElementById("successText").innerHTML =
+    `${selectedScore.title} 주문 테스트가 완료되었습니다.<br>${email} 주소로 PDF가 발송되는 구조로 연결될 예정입니다.`;
+
+  showPage("success");
 }
 
 document.getElementById("searchInput").addEventListener("input", function(){
   const keyword = this.value.toLowerCase().trim();
-
   const filtered = scores.filter(score =>
     score.title.toLowerCase().includes(keyword) ||
     score.keywords.toLowerCase().includes(keyword)
   );
-
   renderScores(filtered);
 });
 
