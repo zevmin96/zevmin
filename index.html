@@ -10,29 +10,30 @@
 body{background:#000;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 button,input{font-family:inherit}
 
-.view{display:none;min-height:100vh;opacity:0;transition:opacity .8s cubic-bezier(.22,1,.36,1)}
-.view.active{display:block;opacity:1}
+.view{display:none;min-height:100vh}
+.view.active{display:block}
 
 .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 20px}
-.logo{width:82vw;max-width:1100px;margin:auto}
+.logo{width:88vw;max-width:1150px;margin:auto}
 .logo svg{width:100%;overflow:visible}
 
-.logo-part{transition:transform 1.4s cubic-bezier(.16,1,.3,1),opacity .9s ease}
-.logo-start .m{transform:translateX(-90px)}
-.logo-start .i{transform:translateX(0)}
-.logo-start .n{transform:translateX(90px)}
-.logo-ready .m,.logo-ready .i,.logo-ready .n{transform:translateX(0)}
-.logo-exit .m{transform:translateX(-120px);opacity:0}
-.logo-exit .i{transform:translateX(0);opacity:0}
-.logo-exit .n{transform:translateX(120px);opacity:0}
+.part{transition:transform 2.2s cubic-bezier(.16,1,.3,1),opacity 1.1s ease}
+.logo.split .m{transform:translateX(-135px)}
+.logo.split .i{transform:translateX(0)}
+.logo.split .n{transform:translateX(135px)}
+.logo.join .m,.logo.join .i,.logo.join .n{transform:translateX(0)}
+.logo.exit .m{transform:translateX(-155px);opacity:0}
+.logo.exit .i{transform:translateX(0);opacity:0}
+.logo.exit .n{transform:translateX(155px);opacity:0}
 
-.brand{font-size:clamp(48px,10vw,120px);letter-spacing:.35em;margin-top:42px;margin-left:.35em;font-weight:600;transition:opacity .7s ease,transform .7s ease}
-.hero-exit .brand{opacity:0;transform:translateY(20px)}
-.enter{margin-top:48px;background:none;border:none;color:#aaa;letter-spacing:.35em;font-size:13px;cursor:pointer;transition:opacity .5s ease,color .3s ease}
+.brand{font-size:clamp(48px,10vw,120px);letter-spacing:.35em;margin-top:42px;margin-left:.35em;font-weight:600;transition:opacity 1s ease,transform 1s ease}
+.enter{margin-top:48px;background:none;border:none;color:#aaa;letter-spacing:.35em;font-size:13px;cursor:pointer;transition:opacity 1s ease,color .3s ease}
 .enter:hover{color:#fff}
-.hero-exit .enter{opacity:0}
+.hero.fade .brand,.hero.fade .enter{opacity:0;transform:translateY(18px)}
 
-.app{background:#070707;min-height:100vh}
+.app{background:#070707;min-height:100vh;opacity:0;transition:opacity .9s ease}
+.app.active{opacity:1}
+
 .topbar{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:18px 22px;background:rgba(7,7,7,.82);backdrop-filter:blur(18px);border-bottom:1px solid #1d1d1d}
 .top-logo{letter-spacing:.28em;font-weight:700;font-size:14px}
 .langs{display:flex;gap:8px}
@@ -44,17 +45,23 @@ button,input{font-family:inherit}
 .inner{max-width:1120px;margin:auto;padding:64px 22px}
 h1{font-size:clamp(40px,6vw,74px);margin-bottom:14px}
 .sub{color:#888;font-size:18px;margin-bottom:34px}
-.search{width:100%;padding:19px 22px;margin-bottom:36px;border:1px solid #2d2d2d;border-radius:30px;background:linear-gradient(180deg,#171717,#101010);color:white;font-size:17px;outline:none}
-.search::placeholder{color:#666}
+
+.search,.input{width:100%;padding:19px 22px;border:1px solid #2d2d2d;border-radius:30px;background:linear-gradient(180deg,#171717,#101010);color:white;font-size:17px;outline:none}
+.search{margin-bottom:36px}
+.search::placeholder,.input::placeholder{color:#666}
 
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:24px}
-.card{cursor:pointer;background:linear-gradient(180deg,#181818,#101010);border:1px solid #2d2d2d;border-radius:42px;padding:28px;min-height:385px;display:flex;flex-direction:column;justify-content:space-between;transition:.35s cubic-bezier(.22,1,.36,1)}
+.card,.panel{background:linear-gradient(180deg,#181818,#101010);border:1px solid #2d2d2d;border-radius:42px}
+.card{cursor:pointer;padding:28px;min-height:385px;display:flex;flex-direction:column;justify-content:space-between;transition:.35s cubic-bezier(.22,1,.36,1)}
 .card:hover{transform:translateY(-6px);border-color:#555}
+.panel{padding:32px}
+
 .cover,.detail-cover{background:radial-gradient(circle at top,#303030,#080808 70%);display:flex;align-items:center;justify-content:center}
 .cover{height:185px;border-radius:34px;margin-bottom:26px}
 .cover svg{width:78%}
 .detail-cover{height:300px;border-radius:38px;margin-bottom:34px}
 .detail-cover svg{width:70%;max-width:720px}
+
 .category{color:#777;font-size:13px;letter-spacing:.14em;margin-bottom:10px}
 .title{font-size:26px;margin-bottom:8px}
 .meta{color:#888;font-size:15px;line-height:1.7}
@@ -63,18 +70,19 @@ h1{font-size:clamp(40px,6vw,74px);margin-bottom:14px}
 .small-btn,.primary{background:#fff;color:#000;border:none;font-weight:800;cursor:pointer}
 .small-btn{padding:13px 20px;border-radius:999px;font-size:14px}
 .primary{width:100%;padding:18px;border-radius:999px;font-size:17px;margin-top:30px}
-
-.panel{background:linear-gradient(180deg,#181818,#101010);border:1px solid #2d2d2d;border-radius:46px;padding:32px}
 .back{color:#888;background:none;border:none;font-size:15px;margin-bottom:34px;cursor:pointer}
 .specs{color:#888;line-height:1.9;margin-top:16px}
-.input{width:100%;padding:18px 20px;border-radius:24px;border:1px solid #333;background:#0b0b0b;color:white;font-size:16px;margin-top:10px;outline:none}
 .notice{color:#777;font-size:14px;line-height:1.7;margin-top:20px}
 .no-result{display:none;color:#777;text-align:center;margin-top:50px}
 .footer{padding:40px 20px;text-align:center;color:#555;font-size:13px}
 
 @media(max-width:600px){
   .brand{font-size:48px;letter-spacing:.28em;margin-left:.28em}
-  .logo{width:88vw}
+  .logo{width:95vw}
+  .logo.split .m{transform:translateX(-72px)}
+  .logo.split .n{transform:translateX(72px)}
+  .logo.exit .m{transform:translateX(-92px);opacity:0}
+  .logo.exit .n{transform:translateX(92px);opacity:0}
   .inner{padding:48px 20px}
   .card,.panel{border-radius:38px}
 }
@@ -86,7 +94,7 @@ h1{font-size:clamp(40px,6vw,74px);margin-bottom:14px}
 <section id="home" class="view active">
   <div class="hero" id="heroBox">
     <div>
-      <div class="logo logo-start" id="mainLogo"></div>
+      <div class="logo split" id="mainLogo"></div>
       <div class="brand">ZEVMIN</div>
       <button class="enter" onclick="enterSite()">ENTER</button>
     </div>
@@ -103,15 +111,15 @@ h1{font-size:clamp(40px,6vw,74px);margin-bottom:14px}
   </div>
 
   <div id="scoresPage" class="page inner">
-    <h1 id="scoresTitle">악보</h1>
-    <p class="sub" id="scoresSub">ZEVMIN 기타 악보를 검색하세요.</p>
-    <input class="search" id="searchInput" placeholder="악보 검색">
+    <h1 id="scoresTitle"></h1>
+    <p class="sub" id="scoresSub"></p>
+    <input class="search" id="searchInput">
     <div class="grid" id="scoreGrid"></div>
-    <div class="no-result" id="noResult">검색 결과가 없습니다.</div>
+    <div class="no-result" id="noResult"></div>
   </div>
 
   <div id="detailPage" class="page inner">
-    <button class="back" id="backScores" onclick="showPage('scores')">← 악보 목록</button>
+    <button class="back" id="backScores" onclick="showPage('scores')"></button>
     <div class="panel">
       <div class="detail-cover" id="detailCover"></div>
       <div class="category">PDF SCORE</div>
@@ -119,27 +127,27 @@ h1{font-size:clamp(40px,6vw,74px);margin-bottom:14px}
       <p class="sub" id="detailDesc"></p>
       <div class="price" id="detailPrice"></div>
       <div class="specs" id="detailSpecs"></div>
-      <button class="primary" id="purchaseBtn" onclick="showCheckout()">구매하기</button>
+      <button class="primary" id="purchaseBtn" onclick="showCheckout()"></button>
     </div>
   </div>
 
   <div id="checkoutPage" class="page inner">
-    <button class="back" id="backDetail" onclick="showPage('detail')">← 상세 페이지</button>
+    <button class="back" id="backDetail" onclick="showPage('detail')"></button>
     <div class="panel">
-      <h1 id="checkoutTitle">결제</h1>
+      <h1 id="checkoutTitle"></h1>
       <p class="sub" id="checkoutItem"></p>
-      <label id="emailLabel">이메일</label>
+      <label id="emailLabel"></label>
       <input class="input" id="emailInput" type="email" placeholder="your@email.com">
-      <button class="primary" id="payBtn" onclick="completePayment()">결제하기</button>
+      <button class="primary" id="payBtn" onclick="completePayment()"></button>
       <p class="notice" id="paymentNotice"></p>
     </div>
   </div>
 
   <div id="successPage" class="page inner">
     <div class="panel">
-      <h1 id="successTitle">주문 완료</h1>
+      <h1 id="successTitle"></h1>
       <p class="sub" id="successText"></p>
-      <button class="primary" id="backToScores" onclick="showPage('scores')">악보 목록으로</button>
+      <button class="primary" id="backToScores" onclick="showPage('scores')"></button>
     </div>
   </div>
 
@@ -149,40 +157,60 @@ h1{font-size:clamp(40px,6vw,74px);margin-bottom:14px}
 <script>
 const logo = `
 <svg viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg">
-  <path class="logo-part m" d="M50 250 L170 40 L290 250 L410 40" stroke="white" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <path class="logo-part i" d="M410 40 L530 250 L650 40" stroke="white" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <path class="logo-part n" d="M650 40 L770 250 L890 40 L1010 250 L1130 40" stroke="white" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="part m" d="M50 250 L170 40 L290 250 L410 40" stroke="white" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="part i" d="M410 40 L530 250 L650 40" stroke="white" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="part n" d="M650 40 L770 250 L890 40 L1010 250 L1130 40" stroke="white" stroke-width="28" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`;
 
 document.getElementById("mainLogo").innerHTML = logo;
 
 setTimeout(()=>{
-  document.getElementById("mainLogo").classList.remove("logo-start");
-  document.getElementById("mainLogo").classList.add("logo-ready");
-},300);
+  const mainLogo = document.getElementById("mainLogo");
+  mainLogo.classList.remove("split");
+  mainLogo.classList.add("join");
+},700);
 
 let lang = "ko";
+let selectedScore = null;
 
 const text = {
   ko:{
-    scores:"악보", sub:"ZEVMIN 기타 악보를 검색하세요.", search:"악보 검색", noResult:"검색 결과가 없습니다.",
-    backScores:"← 악보 목록", backDetail:"← 상세 페이지", purchase:"구매하기",
-    checkout:"결제", email:"이메일", pay:"결제하기",
+    scores:"악보",
+    sub:"ZEVMIN 기타 악보를 검색하세요.",
+    search:"악보 검색",
+    noResult:"검색 결과가 없습니다.",
+    backScores:"← 악보 목록",
+    backDetail:"← 상세 페이지",
+    purchase:"구매하기",
+    checkout:"결제",
+    email:"이메일",
+    pay:"결제하기",
     notice:"현재는 실제 결제 연결 전 테스트 페이지입니다.<br>다음 단계에서 토스페이먼츠를 연결하면 결제 후 PDF가 자동 발송됩니다.",
-    success:"주문 완료", backToScores:"악보 목록으로",
+    success:"주문 완료",
+    backToScores:"악보 목록으로",
     format:"파일 형식: PDF<br>전달 방식: 이메일 + 다운로드 링크<br>결제 방식: 카드결제 준비 중",
     complete:"주문 테스트가 완료되었습니다.<br>이 주소로 PDF가 발송되는 구조로 연결될 예정입니다.",
-    emailAlert:"이메일을 입력해주세요.", view:"보기"
+    emailAlert:"이메일을 입력해주세요.",
+    view:"보기"
   },
   en:{
-    scores:"Scores", sub:"Search ZEVMIN guitar scores.", search:"Search scores", noResult:"No scores found.",
-    backScores:"← Scores", backDetail:"← Detail", purchase:"Purchase",
-    checkout:"Checkout", email:"Email", pay:"Pay",
+    scores:"Scores",
+    sub:"Search ZEVMIN guitar scores.",
+    search:"Search scores",
+    noResult:"No scores found.",
+    backScores:"← Scores",
+    backDetail:"← Detail",
+    purchase:"Purchase",
+    checkout:"Checkout",
+    email:"Email",
+    pay:"Pay",
     notice:"This is a test checkout page before payment integration.<br>In the next version, card payment and automatic PDF email delivery will be connected.",
-    success:"Order Complete", backToScores:"Back to Scores",
+    success:"Order Complete",
+    backToScores:"Back to Scores",
     format:"Format: PDF<br>Delivery: Email + Download Link<br>Payment: Card payment preparation",
     complete:"Your test order has been completed.<br>The PDF delivery system will be connected to this email address.",
-    emailAlert:"Please enter your email.", view:"View"
+    emailAlert:"Please enter your email.",
+    view:"View"
   }
 };
 
@@ -192,24 +220,25 @@ const scores = [
   {title:"Sparkle", price:"₩6,000", descKo:"기타 편곡 · PDF 다운로드", descEn:"Guitar arrangement · PDF download", keywords:"sparkle your name ost guitar score"}
 ];
 
-let selectedScore = scores[0];
-
 function enterSite(){
-  document.getElementById("heroBox").classList.add("hero-exit");
-  document.getElementById("mainLogo").classList.remove("logo-ready");
-  document.getElementById("mainLogo").classList.add("logo-exit");
+  const mainLogo = document.getElementById("mainLogo");
+  document.getElementById("heroBox").classList.add("fade");
+  mainLogo.classList.remove("join");
+  mainLogo.classList.add("exit");
 
   setTimeout(()=>{
     document.getElementById("home").classList.remove("active");
     document.getElementById("app").classList.add("active");
+    setLang(lang);
     showPage("scores");
-  },950);
+  },1450);
 }
 
 function setLang(next){
   lang = next;
   document.getElementById("koBtn").classList.toggle("active", lang==="ko");
   document.getElementById("enBtn").classList.toggle("active", lang==="en");
+
   document.getElementById("scoresTitle").textContent = text[lang].scores;
   document.getElementById("scoresSub").textContent = text[lang].sub;
   document.getElementById("searchInput").placeholder = text[lang].search;
@@ -223,8 +252,8 @@ function setLang(next){
   document.getElementById("paymentNotice").innerHTML = text[lang].notice;
   document.getElementById("successTitle").textContent = text[lang].success;
   document.getElementById("backToScores").textContent = text[lang].backToScores;
-  document.getElementById("detailSpecs").innerHTML = text[lang].format;
-  if(selectedScore) updateDetailTexts();
+
+  if(selectedScore){ updateDetailTexts(); }
   renderScores(filterScores());
 }
 
@@ -232,25 +261,32 @@ function showPage(page){
   ["scoresPage","detailPage","checkoutPage","successPage"].forEach(id=>{
     document.getElementById(id).classList.remove("active");
   });
+
   setTimeout(()=>{
     ["scoresPage","detailPage","checkoutPage","successPage"].forEach(id=>{
       document.getElementById(id).style.display="none";
     });
+
     const target = document.getElementById(page+"Page");
     target.style.display="block";
+
     setTimeout(()=>target.classList.add("active"),30);
     window.scrollTo({top:0,behavior:"smooth"});
-  },160);
+  },180);
 }
 
 function filterScores(){
   const keyword = document.getElementById("searchInput").value.toLowerCase().trim();
-  return scores.filter(score => score.title.toLowerCase().includes(keyword) || score.keywords.toLowerCase().includes(keyword));
+  return scores.filter(score =>
+    score.title.toLowerCase().includes(keyword) ||
+    score.keywords.toLowerCase().includes(keyword)
+  );
 }
 
 function renderScores(list){
   const grid = document.getElementById("scoreGrid");
   grid.innerHTML = "";
+
   list.forEach(score=>{
     const desc = lang==="ko" ? score.descKo : score.descEn;
     const card = document.createElement("div");
@@ -266,9 +302,11 @@ function renderScores(list){
       <div class="bottom">
         <div class="price">${score.price}</div>
         <div class="small-btn">${text[lang].view}</div>
-      </div>`;
+      </div>
+    `;
     grid.appendChild(card);
   });
+
   document.getElementById("noResult").style.display = list.length ? "none" : "block";
 }
 
@@ -295,12 +333,21 @@ function showCheckout(){
 
 function completePayment(){
   const email = document.getElementById("emailInput").value.trim();
-  if(!email){alert(text[lang].emailAlert);return;}
-  document.getElementById("successText").innerHTML = `${selectedScore.title} ${text[lang].complete}<br><br>${email}`;
+
+  if(!email){
+    alert(text[lang].emailAlert);
+    return;
+  }
+
+  document.getElementById("successText").innerHTML =
+    `${selectedScore.title} ${text[lang].complete}<br><br>${email}`;
+
   showPage("success");
 }
 
-document.getElementById("searchInput").addEventListener("input",()=>renderScores(filterScores()));
+document.getElementById("searchInput").addEventListener("input",()=>{
+  renderScores(filterScores());
+});
 
 setLang("ko");
 </script>
