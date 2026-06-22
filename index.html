@@ -23,17 +23,27 @@ button,input{font-family:inherit}
   overflow:hidden;
 }
 
-.logo{width:68vw;max-width:720px;margin:auto}
+.logo{width:72vw;max-width:620px;margin:auto}
 .logo svg{width:100%;overflow:visible}
 
-.part{transition:transform 2.6s cubic-bezier(.16,1,.3,1),opacity 1.2s ease}
-.logo.split .m{transform:translateX(-110px)}
+.part{
+  transition:
+    transform 2.8s cubic-bezier(.16,1,.3,1),
+    opacity 1.2s ease;
+}
+
+/* 시작: 크기는 유지, 거리만 크게 */
+.logo.split .m{transform:translateX(-210px)}
 .logo.split .i{transform:translateX(0)}
-.logo.split .n{transform:translateX(110px)}
-.logo.join .m,.logo.join .i,.logo.join .n{transform:translateX(0)}
-.logo.exit .m{transform:translateX(-145px);opacity:0}
+.logo.split .n{transform:translateX(210px)}
+
+.logo.join .m,
+.logo.join .i,
+.logo.join .n{transform:translateX(0)}
+
+.logo.exit .m{transform:translateX(-270px);opacity:0}
 .logo.exit .i{transform:translateX(0);opacity:0}
-.logo.exit .n{transform:translateX(145px);opacity:0}
+.logo.exit .n{transform:translateX(270px);opacity:0}
 
 .brand{
   font-size:clamp(40px,7vw,82px);
@@ -76,7 +86,6 @@ button,input{font-family:inherit}
 
 .top-logo{letter-spacing:.28em;font-weight:700;font-size:14px}
 .langs{display:flex;gap:8px}
-
 .lang-btn{
   border:1px solid #333;
   background:#111;
@@ -87,14 +96,15 @@ button,input{font-family:inherit}
   cursor:pointer;
   transition:.35s cubic-bezier(.22,1,.36,1);
 }
-
 .lang-btn.active{background:#fff;color:#000;border-color:#fff}
 
 .page{
   display:none;
   opacity:0;
   transform:translateY(18px);
-  transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .55s cubic-bezier(.22,1,.36,1);
+  transition:
+    opacity .55s cubic-bezier(.22,1,.36,1),
+    transform .55s cubic-bezier(.22,1,.36,1);
 }
 
 .page.active{display:block;opacity:1;transform:translateY(0)}
@@ -103,7 +113,6 @@ button,input{font-family:inherit}
 .lang-content{
   transition:opacity .45s ease,transform .45s ease,filter .45s ease;
 }
-
 .lang-content.switching{
   opacity:0;
   transform:translateY(8px);
@@ -186,10 +195,13 @@ h1{font-size:clamp(40px,6vw,74px);margin-bottom:14px}
 @media(max-width:600px){
   .brand{font-size:42px;letter-spacing:.28em;margin-left:.28em}
   .logo{width:72vw;max-width:560px}
-  .logo.split .m{transform:translateX(-42px)}
-  .logo.split .n{transform:translateX(42px)}
-  .logo.exit .m{transform:translateX(-70px);opacity:0}
-  .logo.exit .n{transform:translateX(70px);opacity:0}
+
+  .logo.split .m{transform:translateX(-120px)}
+  .logo.split .n{transform:translateX(120px)}
+
+  .logo.exit .m{transform:translateX(-170px);opacity:0}
+  .logo.exit .n{transform:translateX(170px);opacity:0}
+
   .inner{padding:48px 20px}
   .card,.panel{border-radius:38px}
 }
