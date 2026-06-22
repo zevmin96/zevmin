@@ -22,6 +22,7 @@ body{
   text-align:center;
   padding:40px 20px;
 }
+
 .logo{width:80vw;max-width:1150px;margin:auto}
 .logo svg{width:100%;height:auto}
 
@@ -40,104 +41,123 @@ body{
   text-decoration:none;
   font-size:13px;
   letter-spacing:.35em;
-  transition:.35s cubic-bezier(.22,1,.36,1);
 }
-.enter:hover{color:#fff}
 
 .section{
   min-height:100vh;
   padding:100px 22px;
   background:#080808;
 }
+
 .section-inner{max-width:1180px;margin:auto}
 .section-title{font-size:clamp(32px,5vw,64px);margin-bottom:14px}
 .section-subtitle{color:#888;font-size:18px;margin-bottom:28px}
 
-.search{
+.continuous{
+  position:relative;
+  isolation:isolate;
+}
+
+.continuous-bg{
+  position:absolute;
+  inset:0;
   width:100%;
-  padding:20px 22px;
-  margin-bottom:40px;
-  border-radius:28px;
-  border:1px solid #2b2b2b;
-  background:linear-gradient(180deg,#151515,#101010);
-  color:#fff;
-  font-size:17px;
+  height:100%;
+  z-index:-1;
+  pointer-events:none;
+}
+
+.search-box{
+  height:72px;
+  margin-bottom:42px;
+}
+
+.search-box input{
+  width:100%;
+  height:100%;
+  border:none;
   outline:none;
-  transition:.35s cubic-bezier(.22,1,.36,1);
+  background:transparent;
+  color:white;
+  font-size:17px;
+  padding:0 28px;
 }
-.search::placeholder{color:#555}
-.search:focus{
-  border-color:#777;
-  background:#181818;
-  box-shadow:0 0 0 4px rgba(255,255,255,.06);
-}
+
+.search-box input::placeholder{color:#666}
 
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:24px;
+  gap:26px;
 }
 
 .card{
-  background:linear-gradient(180deg,#171717,#111);
-  border:1px solid #292929;
-  border-radius:38px;
-  padding:26px;
-  min-height:370px;
+  min-height:380px;
+  padding:28px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
-  transition:.45s cubic-bezier(.22,1,.36,1);
-  overflow:hidden;
+  transition:.35s cubic-bezier(.22,1,.36,1);
 }
+
 .card:hover{
-  transform:translateY(-7px) scale(1.01);
-  border-color:#555;
+  transform:translateY(-6px);
 }
 
 .cover{
   height:185px;
-  border-radius:34px;
-  background:radial-gradient(circle at top,#333,#0c0c0c 70%);
+  margin-bottom:26px;
   display:flex;
   justify-content:center;
   align-items:center;
-  margin-bottom:24px;
   overflow:hidden;
 }
-.cover svg{width:78%;opacity:.9}
+
+.cover svg.logo-small{
+  width:78%;
+  height:auto;
+  opacity:.92;
+}
 
 .category{
   color:#777;
   font-size:13px;
   letter-spacing:.12em;
+  margin-bottom:10px;
+}
+
+.title{
+  font-size:25px;
   margin-bottom:8px;
 }
-.title{font-size:24px;margin-bottom:8px}
-.meta{color:#888;font-size:15px;line-height:1.6}
+
+.meta{
+  color:#888;
+  font-size:15px;
+  line-height:1.6;
+}
 
 .bottom{
-  margin-top:28px;
+  margin-top:30px;
   display:flex;
   justify-content:space-between;
   align-items:center;
   gap:14px;
 }
-.price{font-size:22px;font-weight:700}
+
+.price{
+  font-size:23px;
+  font-weight:700;
+}
 
 .button{
+  position:relative;
   color:#000;
-  background:#fff;
   text-decoration:none;
-  padding:12px 18px;
-  border-radius:999px;
+  padding:13px 21px;
   font-size:14px;
-  font-weight:600;
-  transition:.35s cubic-bezier(.22,1,.36,1);
-}
-.button:hover{
-  transform:scale(1.04);
-  background:#eaeaea;
+  font-weight:700;
+  z-index:1;
 }
 
 .no-result{
@@ -159,8 +179,6 @@ body{
   .name{font-size:48px;letter-spacing:.28em;margin-left:.28em}
   .logo{width:88vw}
   .section{padding-top:70px}
-  .card{border-radius:34px}
-  .cover{border-radius:30px}
 }
 </style>
 </head>
@@ -185,14 +203,16 @@ body{
     <h1 class="section-title">Scores</h1>
     <p class="section-subtitle">Search ZEVMIN guitar scores.</p>
 
-    <input class="search" id="searchInput" type="text" placeholder="Search scores">
+    <div class="search-box continuous" data-fill1="#171717" data-fill2="#101010" data-stroke="#343434">
+      <input id="searchInput" type="text" placeholder="Search scores">
+    </div>
 
-    <div class="grid" id="scoreGrid">
+    <div class="grid">
 
-      <div class="card" data-title="unravel">
+      <div class="card continuous" data-title="unravel" data-fill1="#191919" data-fill2="#101010" data-stroke="#333333">
         <div>
-          <div class="cover">
-            <svg viewBox="0 0 1200 300">
+          <div class="cover continuous" data-fill1="#242424" data-fill2="#070707" data-stroke="#1e1e1e">
+            <svg class="logo-small" viewBox="0 0 1200 300">
               <path d="M50 250 L170 40 L290 250 L410 40 L530 250 L650 40 L770 250 L890 40 L1010 250 L1130 40"
               stroke="white" stroke-width="26" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -203,14 +223,14 @@ body{
         </div>
         <div class="bottom">
           <div class="price">₩5,000</div>
-          <a class="button" href="#">Coming Soon</a>
+          <a class="button continuous" href="#" data-fill1="#ffffff" data-fill2="#e8e8e8" data-stroke="#ffffff">Coming Soon</a>
         </div>
       </div>
 
-      <div class="card" data-title="canon rock">
+      <div class="card continuous" data-title="canon rock" data-fill1="#191919" data-fill2="#101010" data-stroke="#333333">
         <div>
-          <div class="cover">
-            <svg viewBox="0 0 1200 300">
+          <div class="cover continuous" data-fill1="#242424" data-fill2="#070707" data-stroke="#1e1e1e">
+            <svg class="logo-small" viewBox="0 0 1200 300">
               <path d="M50 250 L170 40 L290 250 L410 40 L530 250 L650 40 L770 250 L890 40 L1010 250 L1130 40"
               stroke="white" stroke-width="26" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -221,14 +241,14 @@ body{
         </div>
         <div class="bottom">
           <div class="price">₩7,000</div>
-          <a class="button" href="#">Coming Soon</a>
+          <a class="button continuous" href="#" data-fill1="#ffffff" data-fill2="#e8e8e8" data-stroke="#ffffff">Coming Soon</a>
         </div>
       </div>
 
-      <div class="card" data-title="sparkle your name ost">
+      <div class="card continuous" data-title="sparkle your name ost" data-fill1="#191919" data-fill2="#101010" data-stroke="#333333">
         <div>
-          <div class="cover">
-            <svg viewBox="0 0 1200 300">
+          <div class="cover continuous" data-fill1="#242424" data-fill2="#070707" data-stroke="#1e1e1e">
+            <svg class="logo-small" viewBox="0 0 1200 300">
               <path d="M50 250 L170 40 L290 250 L410 40 L530 250 L650 40 L770 250 L890 40 L1010 250 L1130 40"
               stroke="white" stroke-width="26" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -239,7 +259,7 @@ body{
         </div>
         <div class="bottom">
           <div class="price">₩6,000</div>
-          <a class="button" href="#">Coming Soon</a>
+          <a class="button continuous" href="#" data-fill1="#ffffff" data-fill2="#e8e8e8" data-stroke="#ffffff">Coming Soon</a>
         </div>
       </div>
 
@@ -254,6 +274,48 @@ body{
 </footer>
 
 <script>
+function addContinuousCorners(){
+  document.querySelectorAll(".continuous").forEach((el, index)=>{
+    if(el.querySelector(":scope > .continuous-bg")) return;
+
+    const fill1 = el.dataset.fill1 || "#171717";
+    const fill2 = el.dataset.fill2 || "#101010";
+    const stroke = el.dataset.stroke || "#333333";
+    const id = "grad-" + index;
+
+    const svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
+    svg.setAttribute("class","continuous-bg");
+    svg.setAttribute("viewBox","0 0 100 100");
+    svg.setAttribute("preserveAspectRatio","none");
+
+    svg.innerHTML = `
+      <defs>
+        <linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="${fill1}"/>
+          <stop offset="100%" stop-color="${fill2}"/>
+        </linearGradient>
+      </defs>
+      <path
+        d="
+        M 50 0
+        C 78 0 100 22 100 50
+        C 100 78 78 100 50 100
+        C 22 100 0 78 0 50
+        C 0 22 22 0 50 0
+        Z"
+        fill="url(#${id})"
+        stroke="${stroke}"
+        stroke-width="1.2"
+        vector-effect="non-scaling-stroke"
+      />
+    `;
+
+    el.prepend(svg);
+  });
+}
+
+addContinuousCorners();
+
 const searchInput = document.getElementById("searchInput");
 const cards = document.querySelectorAll(".card");
 const noResult = document.getElementById("noResult");
@@ -262,7 +324,7 @@ searchInput.addEventListener("input", function(){
   const keyword = this.value.toLowerCase().trim();
   let visibleCount = 0;
 
-  cards.forEach(card => {
+  cards.forEach(card=>{
     const title = card.dataset.title.toLowerCase();
     if(title.includes(keyword)){
       card.style.display = "flex";
