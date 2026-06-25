@@ -209,13 +209,18 @@ const text = {
 
 const scores = [
   {
-    title:"물빠나",
+    titleKo:"물빠나",
+    titleEn:"Drowning love",
     price:"₩2,000",
     descKo:"PDF 악보 · 미리보기 제공",
     descEn:"PDF score · Preview available",
     keywords:"물빠나 drowning love chasing kou guitar score zevmin"
   }
 ];
+
+function getTitle(score){
+  return lang === "ko" ? score.titleKo : score.titleEn;
+}
 
 function preview(title){
   return `
@@ -285,21 +290,26 @@ function showPage(page){
 
 function filterScores(){
   const keyword=searchInput.value.toLowerCase().trim();
-  return scores.filter(score=>score.title.toLowerCase().includes(keyword)||score.keywords.toLowerCase().includes(keyword));
+  return scores.filter(score=>
+    score.titleKo.toLowerCase().includes(keyword) ||
+    score.titleEn.toLowerCase().includes(keyword) ||
+    score.keywords.toLowerCase().includes(keyword)
+  );
 }
 
 function renderScores(list){
   scoreGrid.innerHTML="";
   list.forEach(score=>{
     const desc=lang==="ko"?score.descKo:score.descEn;
+    const title=getTitle(score);
     const card=document.createElement("div");
     card.className="card";
     card.onclick=()=>openDetail(score);
     card.innerHTML=`
       <div>
-        <div class="preview">${preview(score.title)}</div>
+        <div class="preview">${preview(title)}</div>
         <div class="category">PDF SCORE</div>
-        <div class="title">${score.title}</div>
+        <div class="title">${title}</div>
         <div class="meta">${desc.replace(" · ","<br>")}</div>
       </div>
       <div class="bottom">
@@ -313,18 +323,19 @@ function renderScores(list){
 
 function openDetail(score){
   selectedScore=score;
-  detailPreview.innerHTML=preview(score.title);
   updateDetailTexts();
   showPage("detail");
 }
 
 function updateDetailTexts(){
   const desc=lang==="ko"?selectedScore.descKo:selectedScore.descEn;
-  detailTitle.textContent=selectedScore.title;
+  const title=getTitle(selectedScore);
+  detailPreview.innerHTML=preview(title);
+  detailTitle.textContent=title;
   detailDesc.textContent=desc;
   detailPrice.textContent=selectedScore.price;
   detailSpecs.innerHTML=text[lang].format;
-  checkoutItem.textContent=`${selectedScore.title} · ${selectedScore.price}`;
+  checkoutItem.textContent=`${title} · ${selectedScore.price}`;
 }
 
 function showCheckout(){
@@ -335,7 +346,7 @@ function showCheckout(){
 function completePayment(){
   const email=emailInput.value.trim();
   if(!email){alert(text[lang].emailAlert);return;}
-  successText.innerHTML=`${selectedScore.title} ${text[lang].complete}<br><br>${email}`;
+  successText.innerHTML=`${getTitle(selectedScore)} ${text[lang].complete}<br><br>${email}`;
   showPage("success");
 }
 
